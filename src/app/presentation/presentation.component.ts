@@ -18,26 +18,31 @@ export class PresentationComponent {
 
   constructor() {
     var scene = new THREE.Scene();
+    var model;
     /**
      * 创建网格模型
      */
       // TextureLoader创建一个纹理加载器对象，可以加载图片作为几何体纹理
-    var texLoader = new THREE.TextureLoader();
-    // 如果渲染区域像素范围比较小，纹理贴图的像素值 也可以降低
-    var geometry = new THREE.SphereGeometry(30, 25, 25);
-    // MeshLambertMaterial  MeshPhongMaterial
-    var material = new THREE.MeshBasicMaterial({
-      // color: 0x0000ff,
-      // 设置颜色贴图
-       map: texLoader.load('assets/地球.jpg'),
-    });
-    var mesh = new THREE.Mesh(geometry, material); // 网格模型对象Mesh
+      // var texLoader = new THREE.TextureLoader();
+      // // 如果渲染区域像素范围比较小，纹理贴图的像素值 也可以降低
+      // var geometry = new THREE.SphereGeometry(30, 25, 25);
+      // // MeshLambertMaterial  MeshPhongMaterial
+      // var material = new THREE.MeshBasicMaterial({
+      //   // color: 0x0000ff,
+      //   // 设置颜色贴图
+      //    map: texLoader.load('assets/地球.jpg'),
+      // });
+      // var mesh = new THREE.Mesh(geometry, material); // 网格模型对象Mesh
 
-    // var mesh = new GLTFLoader('assets/3dModel/Mars.glb');
-    // var geometry = new THREE.BoxGeometry( 100, 100, 100 );
-    // var material = new THREE.MeshBasicMaterial( { color: 0xeeff10 } );
-    // var mesh = new THREE.Mesh( geometry, material );
-    scene.add(mesh); // 网格模型添加到场景中
+    const loader = new GLTFLoader();
+    // const mesh = loader.loadAsync('assets/3dModel/Mars.glb');
+    // const model = mesh.scene.children[0];
+    loader.load('assets/3dModel/Mars.glb',
+      function( gltf ){
+      // gltf.scene.position.set(1000, 0, 0);
+      scene.add( gltf.scene );
+      } );
+    // scene.add(model); // 网格模型添加到场景中
 
     /**
      * 光源设置
@@ -60,10 +65,10 @@ export class PresentationComponent {
     var width = window.innerWidth; // 窗口宽度
     var height = window.innerHeight; // 窗口高度
     var k = width / height; // 窗口宽高比
-    var s = 150; // 三维场景显示范围控制系数，系数越大，显示的范围越大
+    var s = 1000; // 三维场景显示范围控制系数，系数越大，显示的范围越大
     // 创建相机对象
     var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
-    camera.position.set(200, 300, 200); // 设置相机位置
+    camera.position.set(200, 300, 400); // 设置相机位置
     /**
      * 创建渲染器对象
      */
@@ -77,7 +82,7 @@ export class PresentationComponent {
     // 渲染函数
     function render() {
       renderer.render(scene, camera); // 执行渲染操作
-      mesh.rotateY(0.003); // 每次绕y轴旋转0.01弧度
+      // mesh.rotateY(0.003); // 每次绕y轴旋转0.01弧度
       requestAnimationFrame(render); // 请求再次执行渲染函数render，渲染下一帧
     }
 
