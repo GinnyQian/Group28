@@ -58,6 +58,25 @@ export class PresentationComponent {
     const ambient = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambient);
 
+    // draw the orbit line
+    function circle (a, b) {
+      // use ArcCurve to create a curve
+      const arc = new THREE.EllipseCurve(0, 0, a, b, 0, 2 * Math.PI, true);
+      // 获取点数越多，圆弧越光滑
+      const points = arc.getPoints(100); // 返回一个vector2对象作为元素组成的数组
+      // console.log('points', points);
+      const curve = new THREE.BufferGeometry();
+      // setFromPoints方法的本质：遍历points把vector2转变化vector3
+      curve.setFromPoints(points);
+      const curveMaterial = new THREE.LineBasicMaterial({
+        color: 0xff0000,
+      });
+      // THREE.Line
+      const line = new THREE.LineLoop(curve, curveMaterial); // 起始点闭合
+      // 圆弧线默认在XOY平面上，绕x轴旋转到XOZ平面上
+      line.rotateX(Math.PI / 2);
+      scene.add(line);
+    }
     /**
      * 相机设置
      */
@@ -94,7 +113,7 @@ export class PresentationComponent {
       earth.position.set(x, 0, z);
       requestAnimationFrame(render); // 请求再次执行渲染函数render，渲染下一帧
     }
-
+    circle(130, 200);
     render();
     // 创建控件对象  相机对象camera作为参数   控件可以监听鼠标的变化，改变相机对象的属性
     const controls = new OrbitControls(camera, renderer.domElement);
