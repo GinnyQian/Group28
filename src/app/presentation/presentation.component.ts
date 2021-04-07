@@ -17,26 +17,38 @@ export class PresentationComponent {
   part = 'presentation part';
 
   constructor() {
-    // const texture = new THREE.TextureLoader().load('assets/universe.jpg');
     const scene = new THREE.Scene();
     const texLoader = new THREE.TextureLoader();
-      // // 如果渲染区域像素范围比较小，纹理贴图的像素值 也可以降低
-    const geometry = new THREE.SphereGeometry(30, 25, 25);
-      // MeshLambertMaterial  MeshPhongMaterial
-    const material = new THREE.MeshBasicMaterial({
-        // color: 0x0000ff,
-        map: texLoader.load('assets/planets/diffuse.png'),
-    });
-    const earth = new THREE.Mesh(geometry, material); // 网格模型对象Mesh
+    
+    const sun = createPlanet('assets/planets/sun.jpg', 20);
+    scene.add(sun);
+    const earth = createPlanet('assets/planets/地球.jpg', 5);
     scene.add(earth);
     earth.position.x = 150;
-    const geometrySun = new THREE.SphereGeometry(30, 25, 25);
-    const materialSun = new THREE.MeshBasicMaterial({
-      map: texLoader.load('assets/planets/sun.jpg'),
-    });
-    const sun = new THREE.Mesh(geometrySun, materialSun);
-    scene.add(sun);
-    // sun.position.x = 150;
+    const mars = createPlanet('assets/planets/火星.jpg', 5);
+    scene.add(mars);
+    mars.position.x = 180;
+    const jupiter = createPlanet('assets/planets/木星.jpg', 6);
+    scene.add(jupiter);
+    jupiter.position.x = 200;
+    const mercury = createPlanet('assets/planets/水星.jpg', 6);
+    scene.add(mercury);
+    mercury.position.x = 60;
+    const moon = createPlanet('assets/planets/月球.jpg', 6);
+    scene.add(moon);
+    moon.position.x = 100;
+    const uranus = createPlanet('assets/planets/天王星.jpg', 6);
+    scene.add(uranus);
+    uranus.position.x = 230;
+    const neptune = createPlanet('assets/planets/海王星.jpg', 6);
+    scene.add(neptune);
+    neptune.position.x = 210;
+    const saturn = createPlanet('assets/planets/土星.jpg', 6);
+    scene.add(saturn);
+    saturn.position.x = 170;
+    const venus = createPlanet('assets/planets/木星.jpg', 6);
+    scene.add(venus);
+    venus.position.x = 200;
     // 坐标轴
     const axesHelper = new THREE.AxesHelper(200);
     scene.add(axesHelper);
@@ -69,7 +81,7 @@ export class PresentationComponent {
       // setFromPoints方法的本质：遍历points把vector2转变化vector3
       curve.setFromPoints(points);
       const curveMaterial = new THREE.LineBasicMaterial({
-        color: 0xff0000,
+        color: 0x808080,
       });
       // THREE.Line
       const line = new THREE.LineLoop(curve, curveMaterial); // 起始点闭合
@@ -117,5 +129,14 @@ export class PresentationComponent {
     render();
     // 创建控件对象  相机对象camera作为参数   控件可以监听鼠标的变化，改变相机对象的属性
     const controls = new OrbitControls(camera, renderer.domElement);
+    function createPlanet(URL, R) {
+      const geometry1 = new THREE.SphereGeometry(R, 25, 8); // 创建一个球体几何对象
+      const material1 = new THREE.MeshBasicMaterial({ // MeshLambertMaterial
+        map: texLoader.load(URL)
+      });
+      const mesh = new THREE.Mesh(geometry1, material1); // 网格模型对象
+      return mesh;
+    }
+
   }
 }
