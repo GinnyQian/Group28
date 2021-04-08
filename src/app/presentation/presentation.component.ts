@@ -1,11 +1,11 @@
+/* tslint:disable */
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-// @ts-ignore
-import * as THREE from 'three';
 // @ts-ignore
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // @ts-ignore
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
+// @ts-ignore
+import * as THREE from 'three';
 
 @Component({
   selector: 'app-presentation',
@@ -17,125 +17,220 @@ export class PresentationComponent {
   part = 'presentation part';
 
   constructor() {
-    const scene = new THREE.Scene();
-    const texLoader = new THREE.TextureLoader();
-    
-    const sun = createPlanet('assets/planets/sun.jpg', 20);
-    scene.add(sun);
-    const earth = createPlanet('assets/planets/地球.jpg', 5);
-    scene.add(earth);
-    earth.position.x = 150;
-    const mars = createPlanet('assets/planets/火星.jpg', 5);
-    scene.add(mars);
-    mars.position.x = 180;
-    const jupiter = createPlanet('assets/planets/木星.jpg', 6);
-    scene.add(jupiter);
-    jupiter.position.x = 200;
-    const mercury = createPlanet('assets/planets/水星.jpg', 6);
-    scene.add(mercury);
-    mercury.position.x = 60;
-    const moon = createPlanet('assets/planets/月球.jpg', 6);
-    scene.add(moon);
-    moon.position.x = 100;
-    const uranus = createPlanet('assets/planets/天王星.jpg', 6);
-    scene.add(uranus);
-    uranus.position.x = 230;
-    const neptune = createPlanet('assets/planets/海王星.jpg', 6);
-    scene.add(neptune);
-    neptune.position.x = 210;
-    const saturn = createPlanet('assets/planets/土星.jpg', 6);
-    scene.add(saturn);
-    saturn.position.x = 170;
-    const venus = createPlanet('assets/planets/木星.jpg', 6);
-    scene.add(venus);
-    venus.position.x = 200;
-    // 坐标轴
-    const axesHelper = new THREE.AxesHelper(200);
-    scene.add(axesHelper);
-    // 网格平面
-    const gridHelper = new THREE.GridHelper(300, 30);
-    scene.add( gridHelper );
     /**
-     * 光源设置
+     * 创建场景对象
      */
-      // 平行光1
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
-    directionalLight.position.set(400, 200, 300);
-    scene.add(directionalLight);
-    // 平行光2
-    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.9);
-    directionalLight2.position.set(-400, -200, -300);
-    scene.add(directionalLight2);
-    // 环境光
-    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
-    scene.add(ambient);
-
-    // draw the orbit line
-    function circle (a, b) {
-      // use ArcCurve to create a curve
-      const arc = new THREE.EllipseCurve(0, 0, a, b, 0, 2 * Math.PI, true);
-      // 获取点数越多，圆弧越光滑
-      const points = arc.getPoints(100); // 返回一个vector2对象作为元素组成的数组
-      // console.log('points', points);
-      const curve = new THREE.BufferGeometry();
-      // setFromPoints方法的本质：遍历points把vector2转变化vector3
-      curve.setFromPoints(points);
-      const curveMaterial = new THREE.LineBasicMaterial({
-        color: 0x808080,
-      });
-      // THREE.Line
-      const line = new THREE.LineLoop(curve, curveMaterial); // 起始点闭合
-      // 圆弧线默认在XOY平面上，绕x轴旋转到XOZ平面上
-      line.rotateX(Math.PI / 2);
+    var scene = new THREE.Scene();
+    var texLoader = new THREE.TextureLoader();
+    // 创建太阳系行星和轨迹
+    let Data = data();
+    var sun = createSphereMesh(Data.sun.R, Data.sun.URL);
+    scene.add(sun)
+    var planetGroup = new THREE.Group();
+    scene.add(planetGroup);
+    Data.planet.forEach(function(obj) {
+      var planet;
+      if (obj.ring) {//判断是否是环行星
+        planet = createringPlanetMesh(obj.sphere.R, obj.sphere.URL, obj.ring.r, obj.ring.R, obj.ring.URL)
+      } else {
+        planet = createSphereMesh(obj.R, obj.URL);
+      }
+      // 行星模型对象自定义公转半径属性
+      planet.revolutionR = obj.revolutionR;
+      // 自定义行星开始角度值，行星在圆周上随机分布
+      planet.angle = 2 * Math.PI * Math.random();
+      planetGroup.add(planet);
+      // 通过公转半径创建圆弧线
+      var line = circle(obj.revolutionR);
       scene.add(line);
-    }
+    })
     /**
      * 相机设置
      */
-    const width = window.innerWidth; // 窗口宽度
-    const height = window.innerHeight; // 窗口高度
-    const k = width / height; // 窗口宽高比
-    const s = 250; // 三维场景显示范围控制系数，系数越大，显示的范围越大
-    // 创建相机对象
-    const camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 2000);
-    camera.position.set(200, 300, 200); // 设置相机位置
+    var width = window.innerWidth; //窗口宽度
+    var height = window.innerHeight; //窗口高度
+    var k = width / height; //窗口宽高比
+    //可以根据最外围的海王星公转半径100 * 5设置改参数
+    var s = 360;//s参数影响相机渲染的上下左右范围
+    //创建相机对象
+    // 注意相机参数6远裁界面可以包含全部星体在内
+    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1500);
+    // 据最外围的海王星公转半径100 * 5设置相机位置
+    // 相机如果位于行星轨迹内部，场景中部分星体会被剪裁
+    camera.position.set(651, 613, 525); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+    /**
+     * 光源设置
+     */
+      //点光源
+    var point = new THREE.PointLight(0xffffff);
+    point.position.set(400, 200, 300); //点光源位置
+    scene.add(point); //点光源添加到场景中
+
+    //环境光
+    var ambient = new THREE.AmbientLight(0x444444);
+    scene.add(ambient);
+
     /**
      * 创建渲染器对象
      */
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true, // 开启锯齿
-      alpha: true,
+    var renderer = new THREE.WebGLRenderer({
+      antialias: true
     });
-    renderer.setSize(width, height); // 设置渲染区域尺寸
-    // renderer.setClearColor(0xb9d3ff, 1); // 设置背景颜色
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x101010, 1); // 设置背景颜色
     document.body.appendChild(renderer.domElement); // body元素中插入canvas对象
 
-    // 渲染函数
-    const R = 130;
-    const a = 130;
-    const b = 200;
-    var angle = 0;
+
     function render() {
-      renderer.render(scene, camera); // 执行渲染操作
-      earth.rotateY(0.003); // 每次绕y轴旋转0.01弧度
-      sun.rotateY(0.01);
-      angle += 0.01;
-      const x = a * Math.sin(angle);
-      const z = b * Math.cos(angle);
-      earth.position.set(x, 0, z);
-      requestAnimationFrame(render); // 请求再次执行渲染函数render，渲染下一帧
+      // 太阳自转
+      sun.rotation.y += 0.01;
+      renderer.render(scene, camera);
+      planetGroup.children.forEach(function(obj) {
+        obj.rotation.y += 0.01;// 行星自转
+        // 半径越大，转动速度越慢
+        obj.angle += 0.005 / obj.revolutionR * 400;
+        // 行星公转过程位置设置
+        obj.position.set(obj.revolutionR * Math.sin(obj.angle), 0, obj.revolutionR * Math.cos(obj.angle));
+      })
+      requestAnimationFrame(render);
+      console.log(camera.position);
     }
-    circle(130, 200);
     render();
-    // 创建控件对象  相机对象camera作为参数   控件可以监听鼠标的变化，改变相机对象的属性
-    const controls = new OrbitControls(camera, renderer.domElement);
-    function createPlanet(URL, R) {
-      const geometry1 = new THREE.SphereGeometry(R, 25, 8); // 创建一个球体几何对象
-      const material1 = new THREE.MeshBasicMaterial({ // MeshLambertMaterial
-        map: texLoader.load(URL)
-      });
-      const mesh = new THREE.Mesh(geometry1, material1); // 网格模型对象
+    var controls = new OrbitControls(camera,renderer.domElement); //创建控件对象
+
+    function createMesh(geometry, URL) { // R半径,图片URL路径
+                                         // Lambert
+      var texLoader = new THREE.TextureLoader();
+      var material = new THREE.MeshBasicMaterial({
+        map: texLoader.load(URL),
+        side: THREE.DoubleSide,//双面显示
+        transparent:true,//开启透明
+      }); //材质对象
+      var mesh = new THREE.Mesh(geometry, material); //网格模型对象
       return mesh;
+    }
+// 球体Mesh  参数：半径R  图片文理
+    function createSphereMesh(R, URL) { // R半径,图片URL路径
+      var geometry = new THREE.SphereGeometry(R, 100, 100); //创建一个球体几何对象
+      return createMesh(geometry, URL);
+    }
+// 圆环Mesh  参数：半径R  图片文理
+    function createRingMesh(r, R, URL) { // R半径,图片URL路径
+      var geometry = new THREE.RingGeometry(r, R, 32);//圆环几何体
+      // var geometry = new THREE.CircleGeometry(R, 30);//圆几何体
+      return createMesh(geometry, URL);
+    }
+// 环星球Mesh
+    function createringPlanetMesh(sphere_R, sphere_URL, ring_r, ring_R, ring_URL) {
+      let group = new THREE.Group();
+      let spere = createSphereMesh(sphere_R, sphere_URL);
+      let ring = createRingMesh(ring_r, ring_R, ring_URL);
+      ring.rotateX(Math.PI/2);//调整星环姿态
+      group.add(spere, ring);
+      return group;
+    }
+
+// 公转轨迹圆弧线
+    function circle(r) {
+      var arc = new THREE.ArcCurve(0, 0, r, 0, 2 * Math.PI, true); // 圆心  半径  起始角度
+      var points = arc.getPoints(50); //返回一个vector2对象作为元素组成的数组
+      var geometry = new THREE.BufferGeometry();
+      geometry.setFromPoints(points);
+      var material = new THREE.LineBasicMaterial({
+        color: 0x006666
+      });
+      var line = new THREE.LineLoop(geometry, material);
+      line.rotateX(Math.PI / 2);
+      return line;
+    }
+
+    function data() {
+      // 所有星体参数均非真实数据
+
+      //  设置一个基准值K，所有星体的半径和公转半径均是改参数的倍数
+      // 所有参数都与K关联，改变K可以很方便改变所有值
+      var K = 5;
+      return {
+        // 太阳
+        sun: {
+          name: '太阳',
+          R: 10 * K, // 天体半径
+          URL: 'assets/planets/sun.jpg', // 天体纹理路径
+        },
+        // 普通行星
+        planet: [{
+
+          name: '水星',
+          R: 2.5 * K,
+          URL: 'assets/planets/水星.jpg',
+          revolutionR: 20 * K, //公转半径
+        }, {
+
+          name: '金星',
+          R: 3 * K,
+          URL: 'assets/planets/金星.jpg',
+          revolutionR: 30 * K, //公转半径
+        }, {
+
+          name: '地球',
+          R: 3.2 * K,
+          URL: 'assets/planets/地球.jpg',
+          revolutionR: 40 * K, //公转半径
+        }, {
+
+          name: '火星',
+          R: 2.5 * K,
+          URL: 'assets/planets/火星.jpg',
+          revolutionR: 50 * K, //公转半径
+        }, {
+
+          name: '木星',
+          R: 5 * K,
+          URL: 'assets/planets/木星.jpg',
+          revolutionR: 60 * K, //公转半径
+        }, {
+
+          name: '土星',
+          sphere: {
+            R: 3.5 * K, //半径
+            URL: 'assets/planets/土星.jpg',
+          },
+          ring: {
+            r: 4 * K, //内径
+            R: 6 * K, //外径
+            URL: 'assets/planets/土星环.png',
+          },
+          revolutionR: 70 * K,
+        }, {
+
+          name: '天王星',
+          sphere: {
+            R: 3.5 * K, //半径
+            URL: 'assets/planets/天王星.jpg',
+          },
+          ring: {
+            r: 4 * K, //内径
+            R: 6 * K, //外径
+            URL: 'assets/planets/天王星环.png',
+          },
+          revolutionR: 80 * K,
+        }, {
+
+          name: '海王星',
+          R: 4 * K,
+          URL: 'assets/planets/海王星.jpg',
+          revolutionR: 100 * K, //公转半径
+        }, ],
+        // 环行星
+        ringPlanet: [],
+        // 月球
+        moon: {
+          R: K,
+          URL: 'tu.png',
+          revolutionR: 10 * K,
+        },
+      };
     }
 
   }
