@@ -81,6 +81,12 @@ export class PresentationComponent {
     renderer.setClearColor(0x101010, 1); // 设置背景颜色
     document.body.appendChild(renderer.domElement); // body元素中插入canvas对象
 
+    //Load background texture
+    const loader = new THREE.TextureLoader();
+    loader.load('assets/universe.jpeg' , function(texture)
+    {
+      scene.background = texture;
+    });
 
     function render() {
       // 太阳自转
@@ -138,7 +144,7 @@ export class PresentationComponent {
       var geometry = new THREE.BufferGeometry();
       geometry.setFromPoints(points);
       var material = new THREE.LineBasicMaterial({
-        color: 0x006666
+        color: 0xdcdcdc
       });
       var line = new THREE.LineLoop(geometry, material);
       line.rotateX(Math.PI / 2);
