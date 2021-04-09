@@ -28,3 +28,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - identify target users, apply cartoonlizaiton for the front page if the website built for preschool education is decided
 - inspiration for interaction part: users could comment and talk on the introduction page, find more existed web for reference
 - Mongo database is optional
+
+
+## Meeting Notes
+
+#### 09/4/2021 
+
+- Clarify and divide the parts of the project in more details, every member work on each module
+- Update the function of end back: Quiz is achieveable, ten questions for every user
+- The draft of the report is due on 17/4/2021
