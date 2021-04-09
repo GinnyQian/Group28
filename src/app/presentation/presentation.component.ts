@@ -25,7 +25,11 @@ export class PresentationComponent {
     // 创建太阳系行星和轨迹
     let Data = data();
     var sun = createSphereMesh(Data.sun.R, Data.sun.URL);
-    scene.add(sun)
+    scene.add(sun);
+
+    var div = createTag(Data.sun.name);
+    sun.tag = div;
+
     var planetGroup = new THREE.Group();
     scene.add(planetGroup);
     Data.planet.forEach(function(obj) {
@@ -35,6 +39,11 @@ export class PresentationComponent {
       } else {
         planet = createSphereMesh(obj.R, obj.URL);
       }
+
+      // planet.name = ; //设置行星属性名
+      var div = createTag(obj.name); //创建行星的标签
+      planet.tag = div; //mesh自定义一个属性tag，指向html元素，方便render函数中设置坐标
+
       // 行星模型对象自定义公转半径属性
       planet.revolutionR = obj.revolutionR;
       // 自定义行星开始角度值，行星在圆周上随机分布
@@ -54,10 +63,10 @@ export class PresentationComponent {
     var s = 360;//s参数影响相机渲染的上下左右范围
     //创建相机对象
     // 注意相机参数6远裁界面可以包含全部星体在内
-    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1500);
+    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 2000);
     // 据最外围的海王星公转半径100 * 5设置相机位置
     // 相机如果位于行星轨迹内部，场景中部分星体会被剪裁
-    camera.position.set(651, 613, 525); //设置相机位置
+    camera.position.set(700, 700, 700); //设置相机位置
     camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
     /**
      * 光源设置
@@ -91,6 +100,7 @@ export class PresentationComponent {
     function render() {
       // 太阳自转
       sun.rotation.y += 0.01;
+      setTagPositionY(sun);
       renderer.render(scene, camera);
       planetGroup.children.forEach(function(obj) {
         obj.rotation.y += 0.01;// 行星自转
@@ -98,6 +108,7 @@ export class PresentationComponent {
         obj.angle += 0.005 / obj.revolutionR * 400;
         // 行星公转过程位置设置
         obj.position.set(obj.revolutionR * Math.sin(obj.angle), 0, obj.revolutionR * Math.cos(obj.angle));
+        setTagPositionY(obj);
       })
       requestAnimationFrame(render);
       console.log(camera.position);
@@ -237,6 +248,38 @@ export class PresentationComponent {
           revolutionR: 10 * K,
         },
       };
+    }
+
+    // 星体标签 创建
+    function createTag(str) { //str表示星体名称
+      var div = document.createElement('div');
+      document.body.appendChild(div);
+      div.style.position = 'absolute';
+      div.style.display = 'block';
+      div.innerText = str; //星体名称
+      div.style.padding = '6px 10px';
+      div.style.color = '#fff';
+      div.style.fontSize = '14px';
+      div.style.backgroundColor = 'rgba(25,25,25,0.4)'; // 0.4 透明度
+      div.style.borderRadius = '5px'
+      return div
+    }
+
+    // 计算星体在canvas画布上的屏幕坐标
+    function setTagPositionY(obj) { //obj表示星体对象
+      var worldVector = new THREE.Vector3();
+      // 获取 three 中行星的世界坐标
+      obj.getWorldPosition(worldVector);
+      // 世界坐标 转 标准设备坐标
+      var standardVector = worldVector.project(camera); //世界坐标转标准设备坐标
+      var a = window.innerWidth / 2;
+      var b = window.innerHeight / 2;
+      // 标准设备坐标 转 屏幕坐标：计算HTML标签纵横坐标
+      var x = Math.round(standardVector.x * a + a); // 标准设备坐标转屏幕坐标
+      var y = Math.round(-standardVector.y * b + b)  + 40; // 标准设备坐标转屏幕坐标
+      // 设置标签纵横坐标适当偏移一定距离
+      obj.tag.style.left = x  + 'px';
+      obj.tag.style.top = y  + 'px';
     }
 
   }
