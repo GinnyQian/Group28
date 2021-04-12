@@ -22,11 +22,14 @@ export class PresentationComponent {
      */
     var scene = new THREE.Scene();
     var texLoader = new THREE.TextureLoader();
+
+    var intersectsArr: any[] = []; //保存所有需要射线拾取的星体对象
+
     // 创建太阳系行星和轨迹
     let Data = data();
     var sun = createSphereMesh(Data.sun.R, Data.sun.URL);
     scene.add(sun);
-
+    intersectsArr.push(sun);
     var div = createTag(Data.sun.name);
     sun.tag = div;
 
@@ -52,6 +55,7 @@ export class PresentationComponent {
       // 通过公转半径创建圆弧线
       var line = circle(obj.revolutionR);
       scene.add(line);
+      intersectsArr.push(planet);
     })
     /**
      * 相机设置
@@ -90,6 +94,17 @@ export class PresentationComponent {
     renderer.setClearColor(0x101010, 1); // 设置背景颜色
     document.body.appendChild(renderer.domElement); // body元素中插入canvas对象
 
+
+    // 创建 div 对象放置 星球信息图片
+    var div = document.createElement("div");
+    div.style.position = 'absolute';
+    div.style.display = 'block';
+    document.body.appendChild(div);
+    var img = document.createElement("img");
+    // 创建的图片元素插入到div元素中
+    div.appendChild(img)
+
+
     //Load background texture
     const loader = new THREE.TextureLoader();
     loader.load('assets/universe.jpeg' , function(texture)
@@ -97,6 +112,7 @@ export class PresentationComponent {
       scene.background = texture;
     });
 
+    var choosePlanet;
     function render() {
       // 太阳自转
       sun.rotation.y += 0.01;
@@ -111,13 +127,28 @@ export class PresentationComponent {
         setTagPositionY(obj);
       })
       requestAnimationFrame(render);
-      console.log(camera.position);
+      // console.log(camera.position);
+
+      // @ts-ignore
+      if (choosePlanet) {
+        var worldVector = new THREE.Vector3();
+        // 获取选中Mesh的世界坐标
+        // @ts-ignore
+        choosePlanet.getWorldPosition(worldVector);
+        var standardVector = worldVector.project(camera); //世界坐标转标准设备坐标
+        var a = window.innerWidth / 2;
+        var b = window.innerHeight / 2;
+        var x = Math.round(standardVector.x * a + a); //标准设备坐标转屏幕坐标
+        var y = Math.round(-standardVector.y * b + b); //标准设备坐标转屏幕坐标
+
+        div.style.left = x + 'px';
+        div.style.top = y - 280 + 'px';
+      }
     }
     render();
     var controls = new OrbitControls(camera,renderer.domElement); //创建控件对象
 
     function createMesh(geometry, URL) { // R半径,图片URL路径
-                                         // Lambert
       var texLoader = new THREE.TextureLoader();
       var material = new THREE.MeshBasicMaterial({
         map: texLoader.load(URL),
@@ -151,11 +182,11 @@ export class PresentationComponent {
 // 公转轨迹圆弧线
     function circle(r) {
       var arc = new THREE.ArcCurve(0, 0, r, 0, 2 * Math.PI, true); // 圆心  半径  起始角度
-      var points = arc.getPoints(50); //返回一个vector2对象作为元素组成的数组
+      var points = arc.getPoints(100); //返回一个vector2对象作为元素组成的数组
       var geometry = new THREE.BufferGeometry();
       geometry.setFromPoints(points);
       var material = new THREE.LineBasicMaterial({
-        color: 0xdcdcdc
+        color: 0x708090
       });
       var line = new THREE.LineLoop(geometry, material);
       line.rotateX(Math.PI / 2);
@@ -262,7 +293,7 @@ export class PresentationComponent {
       div.style.fontSize = '14px';
       div.style.backgroundColor = 'rgba(25,25,25,0.4)'; // 0.4 透明度
       div.style.borderRadius = '5px'
-      return div
+      return div;
     }
 
     // 计算星体在canvas画布上的屏幕坐标
@@ -282,5 +313,28 @@ export class PresentationComponent {
       obj.tag.style.top = y  + 'px';
     }
 
+
+    function choose(event) {
+      img.src = '';
+      choosePlanet = null;
+      var Sx = event.clientX;
+      var Sy = event.clientY;
+      //屏幕坐标转标准设备坐标
+      var x = (Sx / window.innerWidth) * 2 - 1;
+      var y = -(Sy / window.innerHeight) * 2 + 1;
+
+      var raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
+      // 环行星是group包含两个mesh子对象，intersectObjects方法第二个参数设置为true，可以检测子对象
+      var intersects = raycaster.intersectObjects(intersectsArr, true);
+      if (intersects.length > 0) {
+        // 环行星好像无法选中
+        console.log(intersects[0].object.name);
+        img.src = 'assets/tags/' + intersects[0].object.name + '.png';
+        console.log(img.src);
+        choosePlanet = intersects[0].object;
+      }
+    }
+    addEventListener('click', choose); // 监听窗口鼠标单击事件
   }
 }

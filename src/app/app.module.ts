@@ -4,7 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PresentationComponent } from './presentation/presentation.component';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
+// define the routes
+const ROUTES = [
+  {
+    path: '',
+    redirectTo: 'presentation',
+    pathMath: 'full'
+  },
+  {
+    path: '',
+    component: PresentationComponent
+  }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +26,10 @@ import { PresentationComponent } from './presentation/presentation.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    // import some module
+    FormsModule,
+    AppRoutingModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]
