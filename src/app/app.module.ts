@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {QuizService} from './quiz.service';
 import {ChartsModule} from 'ng2-charts';
 import { GameComponent } from './game/game.component';
+import {FormsModule} from '@angular/forms';
 
 // define the routes
 const ROUTES = [
@@ -37,6 +38,7 @@ const ROUTES = [
     AppRoutingModule,
     HttpClientModule,
     ChartsModule,
+    FormsModule,
     // RouterModule.forRoot(ROUTES)
   ],
   providers: [QuizService],
