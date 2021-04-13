@@ -9,6 +9,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import {HttpClientModule} from '@angular/common/http';
 import {QuizService} from './quiz.service';
 import {ChartsModule} from 'ng2-charts';
+import { GameComponent } from './game/game.component';
 
 // define the routes
 const ROUTES = [
@@ -26,7 +27,8 @@ const ROUTES = [
   declarations: [
     AppComponent,
     PresentationComponent,
-    QuizComponent
+    QuizComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
