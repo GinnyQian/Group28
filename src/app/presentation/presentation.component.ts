@@ -70,7 +70,7 @@ export class PresentationComponent {
     var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 2000);
     // 据最外围的海王星公转半径100 * 5设置相机位置
     // 相机如果位于行星轨迹内部，场景中部分星体会被剪裁
-    camera.position.set(700, 700, 700); //设置相机位置
+    camera.position.set(700, 400, 700); //设置相机位置
     camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
     /**
      * 光源设置

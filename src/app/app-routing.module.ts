@@ -4,8 +4,8 @@ import {PresentationComponent} from './presentation/presentation.component';
 import {QuizComponent} from './quiz/quiz.component';
 
 const routes: Routes = [
-  {path: 'presentation', component: PresentationComponent},
-  {path: 'quiz', component: QuizComponent}
+  {path: 'quiz', component: QuizComponent},
+  {path: 'presentation', component: PresentationComponent}
 ];
 
 @NgModule({
