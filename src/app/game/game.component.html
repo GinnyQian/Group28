@@ -5,23 +5,22 @@
     <h2 id="question">{{curQuestion.question}}</h2>
     <div class="choice-container">
       <p class="choice-prefix">A</p>
-      <p class="choice-text">{{curQuestion.choice1}}</p>
+      <p class="choice-text" [class.correct]= "'1' === curQuestion.answer" (click)="onSelect('1')"> {{curQuestion.choice1}}</p>
     </div>
     <div class="choice-container">
       <p class="choice-prefix">B</p>
-      <p class="choice-text">{{curQuestion.choice2}}</p>
+      <p class="choice-text" (click)="onSelect('2')">{{curQuestion.choice2}}</p>
     </div>
     <div class="choice-container">
       <p class="choice-prefix">C</p>
-      <p class="choice-text">{{curQuestion.choice3}}</p>
+      <p class="choice-text" (click)="onSelect('3')">{{curQuestion.choice3}}</p>
     </div>
     <div class="choice-container">
       <p class="choice-prefix">D</p>
-      <p class="choice-text">{{curQuestion.choice4}}</p>
+      <p class="choice-text" (click)="onSelect('4')">{{curQuestion.choice4}}</p>
+    </div>
+    <div class="choice-container">
+      <p class="choice-text" [class.incorrect]="selectedChoice !== curQuestion.answer" >right or wrong</p>
     </div>
   </div>
 </div>
-
-
-
-

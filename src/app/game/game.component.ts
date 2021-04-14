@@ -10,17 +10,32 @@ import { Question } from '../question';
 })
 export class GameComponent implements OnInit {
   questions = QUESTIONS;
-  selectedQuestion: Question | undefined;
-  curQuestion: Question = this.questions[1];
+  selectedChoice: string | undefined;
+  questionIdx = 0;
+  curQuestion: Question = this.questions[this.questionIdx];
   constructor() {
   }
 
   ngOnInit(): void {
   }
 
-  onSelect(question: Question): void {
-  this.selectedQuestion = question;
+  onSelect(choiceNumber: string): void {
+    this.selectedChoice = choiceNumber;
+    if (this.selectedChoice !== this.curQuestion.answer){
+      console.log('wrong answer');
+      // this.curQuestion.choice4 = 'wrong answer';
+    }else{
+      console.log('right answer');
+      // this.curQuestion.choice4 = 'wrong answer';
+    }
+
+    this.nextQuestion();
   }
 
+  nextQuestion(): void {
+    if (this.questionIdx < QUESTIONS.length){
+      this.curQuestion = QUESTIONS[this.questionIdx++];
+    }
+  }
 
 }

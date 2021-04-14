@@ -7,6 +7,12 @@
   background-color: white;
 }
 
+h2 {
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
 .choice-container:hover {
   cursor: pointer;
   box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
