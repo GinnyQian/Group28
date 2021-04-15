@@ -13,6 +13,8 @@ export class GameComponent implements OnInit {
   selectedChoice: string | undefined;
   questionIdx = 0;
   curQuestion: Question = this.questions[this.questionIdx];
+  curScore = 0;
+  haveChoose = '0';
   constructor() {
   }
 
@@ -21,20 +23,25 @@ export class GameComponent implements OnInit {
 
   onSelect(choiceNumber: string): void {
     this.selectedChoice = choiceNumber;
+    this.haveChoose = '1';
     if (this.selectedChoice !== this.curQuestion.answer){
       console.log('wrong answer');
       // this.curQuestion.choice4 = 'wrong answer';
     }else{
       console.log('right answer');
+      this.curScore += 10;
       // this.curQuestion.choice4 = 'wrong answer';
     }
-
-    this.nextQuestion();
+    setTimeout(() => {
+      this.nextQuestion();
+    }, 1000);
   }
 
   nextQuestion(): void {
     if (this.questionIdx < QUESTIONS.length){
       this.curQuestion = QUESTIONS[this.questionIdx++];
+      this.haveChoose = '0';
+      this.selectedChoice = 'nul';
     }
   }
 
