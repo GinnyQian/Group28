@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QUESTIONS } from '../mock-questions';
 import { Question } from '../question';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,10 +16,11 @@ export class GameComponent implements OnInit {
   curQuestion: Question = this.questions[this.questionIdx];
   curScore = 0;
   haveChoose = '0';
-  constructor() {
+  constructor( private router: Router) {
   }
 
   ngOnInit(): void {
+
   }
 
   onSelect(choiceNumber: string): void {
@@ -38,6 +40,11 @@ export class GameComponent implements OnInit {
   }
 
   nextQuestion(): void {
+    if (this.questionIdx === QUESTIONS.length){
+      setTimeout(() => {
+        this.router.navigate(['/end']).then(r => {});
+      }, 1000);
+    }
     if (this.questionIdx < QUESTIONS.length){
       this.curQuestion = QUESTIONS[this.questionIdx++];
       this.haveChoose = '0';

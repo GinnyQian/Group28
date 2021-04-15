@@ -11,6 +11,7 @@ import {QuizService} from './quiz.service';
 import {ChartsModule} from 'ng2-charts';
 import { GameComponent } from './game/game.component';
 import {FormsModule} from '@angular/forms';
+import { EndComponent } from './end/end.component';
 
 // define the routes
 const ROUTES = [
@@ -29,7 +30,8 @@ const ROUTES = [
     AppComponent,
     PresentationComponent,
     QuizComponent,
-    GameComponent
+    GameComponent,
+    EndComponent
   ],
   imports: [
     BrowserModule,

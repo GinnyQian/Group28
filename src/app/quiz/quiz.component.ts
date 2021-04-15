@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -7,7 +8,7 @@ import { QuizService } from '../quiz.service';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-  constructor(private quizService: QuizService) { }
+  constructor(private quizService: QuizService, private router: Router) { }
   stats: any = [];
   // currentdata = null;
   currentIndex = -1;
@@ -18,6 +19,7 @@ export class QuizComponent implements OnInit {
   public radarChartType = 'radar' as const;
 
   ngOnInit(): void {
+    this.router.navigate(['/end']).then(r => {});
     this.retrieveData();
   }
   retrieveData(): void {
