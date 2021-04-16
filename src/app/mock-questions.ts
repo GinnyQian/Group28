@@ -2,6 +2,14 @@ import { Question } from './question';
 
 export const QUESTIONS: Question[] = [
   {
+    question: 'Loading',
+    choice1: '',
+    choice2: '',
+    choice3: '',
+    choice4: '',
+    answer: '1',
+  },
+  {
     question: 'Inside which HTML element do we put the JavaScript??',
     choice1: '<script>',
     choice2: '<javascript>',

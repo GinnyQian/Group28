@@ -1,4 +1,27 @@
-{
-  "radarChartLabels":["Q4","Q3","Q2","Q1"],
-  "radarChartData":[{"data": [120, 130, 180, 70], "label": "1917"}, {"data": [90, 150, 200, 45], "label": "1918"}]
-}
+[
+  {
+    "question": "1 + 1 = ?",
+    "choice1": "2",
+    "choice2": "5",
+    "choice3": "7",
+    "choice4": "8",
+    "answer": "1"
+  },
+  {
+    "question":
+    "2 + 2 = ?",
+    "choice1": "5",
+    "choice2": "1",
+    "choice3": "4",
+    "choice4": "12",
+    "answer": "3"
+  },
+  {
+    "question": " 4 + 4 = ?",
+    "choice1": "m",
+    "choice2": "alertBox(\"Hello World\");",
+    "choice3": "msg(\"Hello World\");",
+    "choice4": "16",
+    "answer": "4"
+  }
+]

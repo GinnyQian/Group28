@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { QUESTIONS } from '../mock-questions';
 import { Question } from '../question';
-import { Router } from '@angular/router';
+import {Data, Router} from '@angular/router';
+import { DataService} from '../data.service';
 
 
 @Component({
@@ -11,16 +12,37 @@ import { Router } from '@angular/router';
 })
 export class GameComponent implements OnInit {
   questions = QUESTIONS;
+  // questions: Question[] | undefined;
   selectedChoice: string | undefined;
+  questionsFromServer: Question[] | undefined;
   questionIdx = 0;
-  curQuestion: Question = this.questions[this.questionIdx];
+  curQuestion: Question = QUESTIONS[0];
   curScore = 0;
   haveChoose = '0';
-  constructor( private router: Router) {
+  constructor( private router: Router, private dataService: DataService ) {
+    this.retrieveData();
+    setTimeout(() => {
+      this.nextQuestion();
+      // this.curQuestion.question = 'asdfasdfasfadsf';
+    }, 800);
   }
 
   ngOnInit(): void {
+  }
 
+  retrieveData(): void {
+    console.log('receive data');
+    this.dataService.getAll().subscribe(
+       data => {
+        this.questionsFromServer = data;
+        console.log(data[1].question);
+        // now let's update the fields
+      },
+      error => {
+        console.log(error);
+      });
+    console.log(this.questions[2].question);
+    console.log('received');
   }
 
   onSelect(choiceNumber: string): void {
@@ -36,19 +58,19 @@ export class GameComponent implements OnInit {
     }
     setTimeout(() => {
       this.nextQuestion();
-    }, 1000);
+    }, 800);
   }
 
   nextQuestion(): void {
-    if (this.questionIdx === QUESTIONS.length){
+    if (this.questionIdx === this.questionsFromServer?.length){
       setTimeout(() => {
         this.router.navigate(['/end']).then(r => {});
-      }, 1000);
-    }
-    if (this.questionIdx < QUESTIONS.length){
-      this.curQuestion = QUESTIONS[this.questionIdx++];
+      }, 800);
+    }else if (this.questionsFromServer != null){
+      this.curQuestion = this.questionsFromServer[this.questionIdx++];
       this.haveChoose = '0';
       this.selectedChoice = 'nul';
+    }else{
     }
   }
 

@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {ChartsModule} from 'ng2-charts';
+import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PresentationComponent } from './presentation/presentation.component';
-
-import { QuizComponent } from './quiz/quiz.component';
-import {HttpClientModule} from '@angular/common/http';
-import {QuizService} from './quiz.service';
-import {ChartsModule} from 'ng2-charts';
-import { GameComponent } from './game/game.component';
-import {FormsModule} from '@angular/forms';
 import { EndComponent } from './end/end.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { GameComponent } from './game/game.component';
+
+
+import {QuizService} from './quiz.service';
+import {DataService} from './data.service';
 
 // define the routes
 const ROUTES = [
@@ -35,15 +37,12 @@ const ROUTES = [
   ],
   imports: [
     BrowserModule,
-    // import some module
-    // FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ChartsModule,
     FormsModule,
-    // RouterModule.forRoot(ROUTES)
   ],
-  providers: [QuizService],
+  providers: [QuizService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

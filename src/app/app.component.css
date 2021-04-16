@@ -11,7 +11,6 @@ h2, h3 {
   font-weight: lighter;
 }
 body {
-  /*margin: 2em;*/
 }
 
 .quiz {
@@ -25,13 +24,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.left {
+  float: left;
+}
+
 .btn {
   font-size: 1.8rem;
   padding: 1rem 0;
-  width: 20rem;
+  width: 7rem;
   text-align: center;
   border: 0.1rem solid #56a5eb;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-decoration: none;
   color: #56a5eb;
   background-color: white;
