@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 export class AppComponent {
   title = 'Guide to the Solar system';
   bgm = new Audio('assets/bgm.mp3');
+  curScore = 0;
   constructor( private router: Router) {
     // this.router.navigate(['/presentation']);
     this.playMusic();

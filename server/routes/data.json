@@ -1,27 +1,43 @@
 [
   {
-    "question": "1 + 1 = ?",
-    "choice1": "2",
-    "choice2": "5",
-    "choice3": "7",
-    "choice4": "8",
+    "question": "Which planet is the hottest planet of the solar system? ",
+    "choice1": "Venus",
+    "choice2": "Earth",
+    "choice3": "Mars",
+    "choice4": "Moon",
     "answer": "1"
   },
+
   {
-    "question":
-    "2 + 2 = ?",
-    "choice1": "5",
-    "choice2": "1",
-    "choice3": "4",
-    "choice4": "12",
+    "question": "Which planet is known for the \"Great Red Spot\"? ",
+    "choice1": "Neptune",
+    "choice2": "Venus",
+    "choice3": "Mars",
+    "choice4": "Jupiter",
+    "answer": "4"
+  },
+  {
+    "question": "Which planet is the fastest planet?",
+    "choice1": "Mars",
+    "choice2": "Earth",
+    "choice3": "Mercury",
+    "choice4": "Sun",
     "answer": "3"
   },
   {
-    "question": " 4 + 4 = ?",
-    "choice1": "m",
-    "choice2": "alertBox(\"Hello World\");",
-    "choice3": "msg(\"Hello World\");",
-    "choice4": "16",
+    "question": "Which planet is the most likely candidate for a future human habitat?",
+    "choice1": "Mars",
+    "choice2": "Moon",
+    "choice3": "Mercury",
+    "choice4": "Sun",
+    "answer": "1"
+  },
+  {
+    "question": "Which planet is named after the Roman goddess of beauty?",
+    "choice1": "Mars",
+    "choice2": "Earth",
+    "choice3": "Mercury",
+    "choice4": "Venus",
     "answer": "4"
   }
 ]
