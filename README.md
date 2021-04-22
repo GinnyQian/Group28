@@ -24,7 +24,7 @@ Yi Yuan - of20438@bristol.ac.uk
 
 We refer to the "solar system" as it has been named after our sun, called "sol" which is Latin for "sun." The words "Solar System" related to two things: Any celestial body that is "of the Sun," and a collection of objects that work together to form the entire whole.
 
-<img src="pictures/abs0.png" alt="abs0" style="zoom:200%;" />
+<img src="pictures/abs0.png" alt="abs0" width="200%;" height="200%"/>
 
 
 
@@ -46,7 +46,7 @@ The core objectives of our project are:
 
 To provide knowledge that explains astronomy in language children can understand and content on solar system explaining concepts in simple, clear, real-world language, with examples that your child can relate to, and three-dimensional displays. 
 
-<img src="pictures/abs1.png" alt="abs1" style="zoom:180%;" />
+<img src="pictures/abs1.png" alt="abs1" width="150%;" />
 
 
 
