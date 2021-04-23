@@ -1,18 +1,20 @@
 <h1>{{title}}</h1>
-<!-- 加载 presentation 模块 -->
-<!--<app-presentation></app-presentation>-->
-<!--<app-quiz></app-quiz>-->
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link" routerLink="/presentation">Presentation</a>
     </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" routerLink="/quiz">quiz</a>-->
+<!--    </li>-->
     <li class="nav-item">
-      <a class="nav-link" routerLink="/quiz">quiz</a>
+      <a class="nav-link" routerLink="/game">Game</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="bgm.play()">Music</a>
     </li>
   </ul>
-  <div>
-    <router-outlet></router-outlet>
-  </div>
 </div>
-
+<div>
+  <router-outlet></router-outlet>
+</div>

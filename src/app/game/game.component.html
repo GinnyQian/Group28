@@ -1,0 +1,41 @@
+
+<div class="container">
+
+  <div id="game" class="justify-center flex-column">
+    <div id="hud">
+      <div id="hud-item">
+        <div class="hud-prefix" class="question">
+          Question
+        </div>
+        <h2 class="score">{{questionIdx+1}} / 10</h2>
+      </div>
+      <div >
+        <h2 class="question">
+          Score
+        </h2>
+        <h2 class="score" >
+          {{curScore}}
+        </h2>
+      </div>
+    </div>
+    <div class="question">{{curQuestion.question}}
+    </div>
+    <div class="choice-container" [class.correct]=" selectedChoice === '1' && curQuestion.answer === '1' " [class.incorrect]="selectedChoice == '1' && selectedChoice !== curQuestion.answer" >
+      <p class="choice-prefix">A</p>
+      <p class="choice-text" (click)="onSelect('1')"> {{curQuestion.choice1}}</p>
+    </div>
+    <div class="choice-container" [class.correct]=" selectedChoice === '2' && curQuestion.answer === '2' " [class.incorrect]="selectedChoice == '2' && selectedChoice !== curQuestion.answer">
+      <p class="choice-prefix">B</p>
+      <p class="choice-text" (click)="onSelect('2')">{{curQuestion.choice2}}</p>
+    </div>
+    <div class="choice-container" [class.correct]=" selectedChoice === '3' && curQuestion.answer === '3'" [class.incorrect]="selectedChoice == '3' && selectedChoice !== curQuestion.answer">
+      <p class="choice-prefix">C</p>
+      <p class="choice-text" (click)="onSelect('3')">{{curQuestion.choice3}}</p>
+    </div>
+    <div class="choice-container" [class.correct]=" selectedChoice === '4' && curQuestion.answer === '4' " [class.incorrect]="selectedChoice == '4' && selectedChoice !== curQuestion.answer">
+      <p class="choice-prefix">D</p>
+      <p class="choice-text" (click)="onSelect('4')">{{curQuestion.choice4}}</p>
+    </div>
+
+  </div>
+</div>

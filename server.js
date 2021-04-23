@@ -1,8 +1,24 @@
 // Get dependencies
+
+// mongodb info
+// mongodb+srv://penghezhang:<password>@groupproject.qhbrl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
 const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://penghezhang:<root>@groupproject.qhbrl.mongodb.net/quizdata?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  //const collection = client.db("sample_airbnb").collection("listingsAndReviews");
+  // perform actions on the collection object
+
+  console.log(client.db('sample_airbnb').listCollections());
+  client.close();
+});
+
 
 // Get our API routes
 const api = require('./server/routes/api');

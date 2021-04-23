@@ -1,9 +1,9 @@
 /* tslint:disable */
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 // @ts-ignore
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 // @ts-ignore
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 // @ts-ignore
 import * as THREE from 'three';
 
@@ -13,13 +13,17 @@ import * as THREE from 'three';
   styleUrls: ['./presentation.component.css']
 })
 export class PresentationComponent {
-
+  bgm = new Audio('assets/bgm.mp3');
   part = 'presentation part';
+  chosenPlanet: string = '';
+
 
   constructor() {
     /**
      * 创建场景对象
      */
+    this.bgm.load();
+    this.bgm.play();
     var scene = new THREE.Scene();
     var texLoader = new THREE.TextureLoader();
 
@@ -30,8 +34,7 @@ export class PresentationComponent {
     var sun = createSphereMesh(Data.sun.R, Data.sun.URL);
     scene.add(sun);
     intersectsArr.push(sun);
-    var div = createTag(Data.sun.name);
-    sun.tag = div;
+    sun.tag = createTag(Data.sun.name);
 
     var planetGroup = new THREE.Group();
     scene.add(planetGroup);
@@ -39,13 +42,15 @@ export class PresentationComponent {
       var planet;
       if (obj.ring) {//判断是否是环行星
         planet = createringPlanetMesh(obj.sphere.R, obj.sphere.URL, obj.ring.r, obj.ring.R, obj.ring.URL)
+        // planet.children[0].name = obj.name;
+        // planet.children[1].name = obj.name;
       } else {
         planet = createSphereMesh(obj.R, obj.URL);
       }
 
-      // planet.name = ; //设置行星属性名
-      var div = createTag(obj.name); //创建行星的标签
-      planet.tag = div; //mesh自定义一个属性tag，指向html元素，方便render函数中设置坐标
+      planet.name = obj.name;
+      //创建行星的标签
+      planet.tag = createTag(obj.name); //mesh自定义一个属性tag，指向html元素，方便render函数中设置坐标
 
       // 行星模型对象自定义公转半径属性
       planet.revolutionR = obj.revolutionR;
@@ -96,14 +101,17 @@ export class PresentationComponent {
 
 
     // 创建 div 对象放置 星球信息图片
+    var choosePlanet: { getWorldPosition: (arg0: any) => void; } | null = null;
+
     var div = document.createElement("div");
     div.style.position = 'absolute';
     div.style.display = 'block';
     document.body.appendChild(div);
+
     var img = document.createElement("img");
     // 创建的图片元素插入到div元素中
-    div.appendChild(img)
-
+    div.appendChild(img);
+    img.src = '';
 
     //Load background texture
     const loader = new THREE.TextureLoader();
@@ -112,7 +120,7 @@ export class PresentationComponent {
       scene.background = texture;
     });
 
-    var choosePlanet;
+
     function render() {
       // 太阳自转
       sun.rotation.y += 0.01;
@@ -121,7 +129,7 @@ export class PresentationComponent {
       planetGroup.children.forEach(function(obj) {
         obj.rotation.y += 0.01;// 行星自转
         // 半径越大，转动速度越慢
-        obj.angle += 0.005 / obj.revolutionR * 400;
+        obj.angle += 0.001 / obj.revolutionR * 400;
         // 行星公转过程位置设置
         obj.position.set(obj.revolutionR * Math.sin(obj.angle), 0, obj.revolutionR * Math.cos(obj.angle));
         setTagPositionY(obj);
@@ -129,16 +137,17 @@ export class PresentationComponent {
       requestAnimationFrame(render);
       // console.log(camera.position);
 
-      // @ts-ignore
-      if (choosePlanet) {
+
+      if (img.src != '' ) {
+        console.log("img:" + img.src);
+        // img.src = 'assets/tags/' + this.chosenPlanet + '.png';
         var worldVector = new THREE.Vector3();
         // 获取选中Mesh的世界坐标
-        // @ts-ignore
-        choosePlanet.getWorldPosition(worldVector);
+        // choosePlanet.getWorldPosition(worldVector);
         var standardVector = worldVector.project(camera); //世界坐标转标准设备坐标
         var a = window.innerWidth / 2;
         var b = window.innerHeight / 2;
-        var x = Math.round(standardVector.x * a + a); //标准设备坐标转屏幕坐标
+        var x = Math.round(standardVector.x * a + a);  //标准设备坐标转屏幕坐标
         var y = Math.round(-standardVector.y * b + b); //标准设备坐标转屏幕坐标
 
         div.style.left = x + 'px';
@@ -155,8 +164,8 @@ export class PresentationComponent {
         side: THREE.DoubleSide,//双面显示
         transparent:true,//开启透明
       }); //材质对象
-      var mesh = new THREE.Mesh(geometry, material); //网格模型对象
-      return mesh;
+       //网格模型对象
+      return new THREE.Mesh(geometry, material);
     }
 // 球体Mesh  参数：半径R  图片文理
     function createSphereMesh(R, URL) { // R半径,图片URL路径
@@ -313,28 +322,56 @@ export class PresentationComponent {
       obj.tag.style.top = y  + 'px';
     }
 
+    function chooseButton(planetName: string): void{
+      console.log("点了" + planetName);
+      img.src = 'assets/tags/' + planetName + '.png';
+    }
+
 
     function choose(event) {
       img.src = '';
-      choosePlanet = null;
+      // getName();
       var Sx = event.clientX;
       var Sy = event.clientY;
-      //屏幕坐标转标准设备坐标
-      var x = (Sx / window.innerWidth) * 2 - 1;
-      var y = -(Sy / window.innerHeight) * 2 + 1;
-
-      var raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
-      // 环行星是group包含两个mesh子对象，intersectObjects方法第二个参数设置为true，可以检测子对象
-      var intersects = raycaster.intersectObjects(intersectsArr, true);
-      if (intersects.length > 0) {
-        // 环行星好像无法选中
-        console.log(intersects[0].object.name);
-        img.src = 'assets/tags/' + intersects[0].object.name + '.png';
-        console.log(img.src);
-        choosePlanet = intersects[0].object;
+      console.log(Sx, Sy);
+      // //屏幕坐标转标准设备坐标
+      // var x = (Sx / window.innerWidth) * 2 - 1;
+      // var y = -(Sy / window.innerHeight) * 2 + 1;
+      if (Sy > 680 ){
+        if(Sx > 220 && Sx < 270){
+          img.src = 'assets/tags/太阳.png'
+        }
+        if(Sx > 320 && Sx < 370){
+          img.src = 'assets/tags/水星.png'
+        }
+        if(Sx > 420 && Sx < 470){
+          img.src = 'assets/tags/金星.png'
+        }
+        if(Sx > 520 && Sx < 570){
+          img.src = 'assets/tags/地球.png'
+        }
+        if(Sx > 620 && Sx < 670){
+          img.src = 'assets/tags/火星.png'
+        }
       }
+
+
+      // var raycaster = new THREE.Raycaster();
+      // raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
+      // // 环行星是group包含两个mesh子对象，intersectObjects方法第二个参数设置为true，可以检测子对象
+      // var intersects = raycaster.intersectObjects(intersectsArr, true);
+      // if (intersects.length > 0) {
+      //   // 环行星好像无法选中
+      //   console.log("射线投射器返回的对象", intersects);
+      //   console.log(intersects[0].object.name);
+      //   img.src = 'assets/tags/' + intersects[0].object.name + '.png';
+      //   console.log(img.src);
+      //   choosePlanet = intersects[0].object;
+      // }else{
+      //   console.log('没东西');
+      // }
     }
-    addEventListener('click', choose); // 监听窗口鼠标单击事件
+
+     addEventListener('click', choose); // 监听窗口鼠标单击事件
   }
 }

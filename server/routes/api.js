@@ -12,29 +12,19 @@ const data = require('./data.json')
 // });
 // Get all posts
 router.get('/', (req, res) => {
-  // Get posts from the mock api
-  // This should ideally be replaced with a service that connects to MongoDB
-  // axios.get(`${API}/quiz`)
-  //   .then(posts => {
-  //     res.status(200).json(posts.data);
-  //   })
-  //   .catch(error => {
-  //     res.status(500).send(error)
-  //   });
-  res.send('api works');
+  console.log("api '/' works");
 });
 
-router.get('/quiz',(req,res) => {
-  //res.send('quiz data');
-  // axios.get(`${API}/quiz`)
-  //   .then(posts => {
-  //     res.status(200).json(posts.data);
-  //   })
-  //   .catch(error => {
-  //     res.status(500).send(error)
-  //   });
+router.get('/test', (req, res) => {
+  res.send('data:')
   res.header("Content-Type",'application/json');
-  res.send(JSON.stringify(data))
+  res.send(JSON.stringify(data));
+});
+
+router.get('/game',(req,res) => {
+  res.header("Content-Type",'application/json');
+  res.send(JSON.stringify(data));
+  console.log("api '/game' works");
 })
 
 module.exports = router;

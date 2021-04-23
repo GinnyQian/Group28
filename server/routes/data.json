@@ -1,4 +1,43 @@
-{
-  "radarChartLabels":["Q4","Q3","Q2","Q1"],
-  "radarChartData":[{"data": [120, 130, 180, 70], "label": "1917"}, {"data": [90, 150, 200, 45], "label": "1918"}]
-}
+[
+  {
+    "question": "Which planet is the hottest planet of the solar system? ",
+    "choice1": "Venus",
+    "choice2": "Earth",
+    "choice3": "Mars",
+    "choice4": "Moon",
+    "answer": "1"
+  },
+
+  {
+    "question": "Which planet is known for the \"Great Red Spot\"? ",
+    "choice1": "Neptune",
+    "choice2": "Venus",
+    "choice3": "Mars",
+    "choice4": "Jupiter",
+    "answer": "4"
+  },
+  {
+    "question": "Which planet is the fastest planet?",
+    "choice1": "Mars",
+    "choice2": "Earth",
+    "choice3": "Mercury",
+    "choice4": "Sun",
+    "answer": "3"
+  },
+  {
+    "question": "Which planet is the most likely candidate for a future human habitat?",
+    "choice1": "Mars",
+    "choice2": "Moon",
+    "choice3": "Mercury",
+    "choice4": "Sun",
+    "answer": "1"
+  },
+  {
+    "question": "Which planet is named after the Roman goddess of beauty?",
+    "choice1": "Mars",
+    "choice2": "Earth",
+    "choice3": "Mercury",
+    "choice4": "Venus",
+    "answer": "4"
+  }
+]
