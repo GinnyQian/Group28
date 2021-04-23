@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { map, filter, switchMap } from 'rxjs/operators';
 import {Question} from './question';
+import {GameComponent} from './game/game.component';
 
 @Injectable({
   providedIn: 'root'
