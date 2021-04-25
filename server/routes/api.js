@@ -6,11 +6,12 @@ const axios = require('axios');
 const API = 'https://jsonplaceholder.typicode.com';
 const data = require('./data.json')
 
-/* GET api listing. */
-// router.get('/', (req, res) => {
-//   res.send('api works');
-// });
-// Get all posts
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://penghezhang:<root>@groupproject.qhbrl.mongodb.net/quizdata?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// const col = client.db('quizdata').collection("questions");
+
+
 router.get('/', (req, res) => {
   console.log("api '/' works");
 });
@@ -26,5 +27,14 @@ router.get('/game',(req,res) => {
   res.send(JSON.stringify(data));
   console.log("api '/game' works");
 })
+
+// router.get('/test',(req,res) => {
+//   client.connect(error => {
+//     console.log("connected");
+//
+//     client.close();
+//     }
+//   )
+// });
 
 module.exports = router;

@@ -8,16 +8,19 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://penghezhang:<root>@groupproject.qhbrl.mongodb.net/quizdata?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  //const collection = client.db("sample_airbnb").collection("listingsAndReviews");
-  // perform actions on the collection object
-
-  console.log(client.db('sample_airbnb').listCollections());
-  client.close();
-});
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://penghezhang:<root>@groupproject.qhbrl.mongodb.net/quizdata?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//   //const collection = client.db("sample_airbnb").collection("listingsAndReviews");
+//   // perform actions on the collection object
+//   //const col = client.db("quizdata").collection("questions");
+//   console.log("connected")
+//   console.log(client.db('quizdata').collection("questions"));
+//   // console.log(col.findOne());
+//
+//   client.close();
+// });
 
 
 // Get our API routes
