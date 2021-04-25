@@ -339,7 +339,7 @@ export class PresentationComponent {
       // var y = -(Sy / window.innerHeight) * 2 + 1;
       if (Sy > 680 ){
         if(Sx > 320 && Sx < 370){
-          img.src = 'assets/tags/太阳.png'
+          img.src = 'assets/tags/Sun.png'
         }
         if(Sx > 420 && Sx < 470){
           img.src = 'assets/tags/Mercury.png'
