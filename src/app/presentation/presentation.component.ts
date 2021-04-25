@@ -338,20 +338,32 @@ export class PresentationComponent {
       // var x = (Sx / window.innerWidth) * 2 - 1;
       // var y = -(Sy / window.innerHeight) * 2 + 1;
       if (Sy > 680 ){
-        if(Sx > 220 && Sx < 270){
+        if(Sx > 320 && Sx < 370){
           img.src = 'assets/tags/太阳.png'
         }
-        if(Sx > 320 && Sx < 370){
-          img.src = 'assets/tags/水星.png'
-        }
         if(Sx > 420 && Sx < 470){
-          img.src = 'assets/tags/金星.png'
+          img.src = 'assets/tags/Mercury.png'
         }
         if(Sx > 520 && Sx < 570){
-          img.src = 'assets/tags/地球.png'
+          img.src = 'assets/tags/Venus.png'
         }
         if(Sx > 620 && Sx < 670){
-          img.src = 'assets/tags/火星.png'
+          img.src = 'assets/tags/Earth.png'
+        }
+        if(Sx > 720 && Sx < 770){
+          img.src = 'assets/tags/Mars.png'
+        }
+        if(Sx > 820 && Sx < 870){
+          img.src = 'assets/tags/Jupiter.png'
+        }
+        if(Sx > 920 && Sx < 970){
+          img.src = 'assets/tags/Saturn.png'
+        }
+        if(Sx > 1020 && Sx < 1070){
+          img.src = 'assets/tags/Uranus.png'
+        }
+        if(Sx > 1120 && Sx < 1170){
+          img.src = 'assets/tags/Neptune.png'
         }
       }
 
