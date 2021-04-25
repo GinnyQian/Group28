@@ -211,72 +211,72 @@ export class PresentationComponent {
       return {
         // 太阳
         sun: {
-          name: '太阳',
+          name: 'Sun',
           R: 10 * K, // 天体半径
           URL: 'assets/planets/sun.jpg', // 天体纹理路径
         },
         // 普通行星
         planet: [{
 
-          name: '水星',
+          name: 'Mercury',
           R: 2.5 * K,
-          URL: 'assets/planets/水星.jpg',
+          URL: 'assets/planets/Mercury.jpg',
           revolutionR: 20 * K, //公转半径
         }, {
 
-          name: '金星',
+          name: 'Venus',
           R: 3 * K,
-          URL: 'assets/planets/金星.jpg',
+          URL: 'assets/planets/Venus.jpg',
           revolutionR: 30 * K, //公转半径
         }, {
 
-          name: '地球',
+          name: 'Earth',
           R: 3.2 * K,
-          URL: 'assets/planets/地球.jpg',
+          URL: 'assets/planets/Earth.jpg',
           revolutionR: 40 * K, //公转半径
         }, {
 
-          name: '火星',
+          name: 'Mars',
           R: 2.5 * K,
-          URL: 'assets/planets/火星.jpg',
+          URL: 'assets/planets/Mars.jpg',
           revolutionR: 50 * K, //公转半径
         }, {
 
-          name: '木星',
+          name: 'Jupiter',
           R: 5 * K,
-          URL: 'assets/planets/木星.jpg',
+          URL: 'assets/planets/Jupiter.jpg',
           revolutionR: 60 * K, //公转半径
         }, {
 
-          name: '土星',
+          name: 'Saturn',
           sphere: {
             R: 3.5 * K, //半径
-            URL: 'assets/planets/土星.jpg',
+            URL: 'assets/planets/Saturn.jpg',
           },
           ring: {
             r: 4 * K, //内径
             R: 6 * K, //外径
-            URL: 'assets/planets/土星环.png',
+            URL: 'assets/planets/SaturnRing.png',
           },
           revolutionR: 70 * K,
         }, {
 
-          name: '天王星',
+          name: 'Uranus',
           sphere: {
             R: 3.5 * K, //半径
-            URL: 'assets/planets/天王星.jpg',
+            URL: 'assets/planets/Uranus.jpg',
           },
           ring: {
             r: 4 * K, //内径
             R: 6 * K, //外径
-            URL: 'assets/planets/天王星环.png',
+            URL: 'assets/planets/UranusRing.png',
           },
           revolutionR: 80 * K,
         }, {
 
-          name: '海王星',
+          name: 'Neptune',
           R: 4 * K,
-          URL: 'assets/planets/海王星.jpg',
+          URL: 'assets/planets/Neptune.jpg',
           revolutionR: 100 * K, //公转半径
         }, ],
         // 环行星
