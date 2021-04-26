@@ -63,6 +63,7 @@ export class GameComponent implements OnInit {
   nextQuestion(): void {
     if (this.questionIdx === this.questionsFromServer?.length){
       setTimeout(() => {
+        this.dataService.curScore = this.curScore;
         this.router.navigate(['/end']).then(r => {});
       }, 800);
     }else if (this.questionsFromServer != null){

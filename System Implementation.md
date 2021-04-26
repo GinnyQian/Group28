@@ -16,8 +16,6 @@ Front End : Our project focuses on the front-end part. The front-end is composed
 
 ### Front End - Angular Details of implementation
 
-
-
 #### Comonents
 
 ##### Presentaion
@@ -30,11 +28,11 @@ The overall layout of this part is shown in the figure below
 
 We have implemented the following functions：
 
-**Dynamic display of 3D model of solar system** 
+***Dynamic display of 3D model of solar system***
 
 In the presentation part, we mainly used the famous three. js library which is a cross-browser JavaScript library and application programming interface (API) used to create and display animated 3D computer graphics in a web browser using WebGL. The implementation of this part can be divided into the following parts:
 
-1. Create the scene
+1. **Create the scene**
 
    To actually be able to display anything with three.js, we need three things: scene, camera and renderer, so that we can render the scene with camera.
 
@@ -63,7 +61,9 @@ In the presentation part, we mainly used the famous three. js library which is a
    document.body.appendChild(renderer.domElement); // insert to dom
    ```
 
-2. Create planets object 
+   
+
+2. **Create planets object** 
 
    In this part, we need to create mesh as planets and add them to scene, because wo have 10  planets to implement so we write a functin to simplify that:
 
@@ -118,7 +118,9 @@ In the presentation part, we mainly used the famous three. js library which is a
    }
    ```
 
-3. Mock the Planets data
+   
+
+3. **Mock the Planets data**
 
    In the code, the radius, texture path, revolution radius and other parameters of all planets are all set in function data(), we use a reference value K to make relative size and trajectory of the planet.
 
@@ -154,7 +156,9 @@ In the presentation part, we mainly used the famous three. js library which is a
     }
    ```
 
-4. Create planet's tag
+   
+
+4. **Create planet's tag**
 
    In order to better identify the planet, we added  tags around the planets, display the name of the planet, and move with the planet, so we wrote createTag( ) and setTagPosition( ) to implement it.
 
@@ -189,7 +193,9 @@ In the presentation part, we mainly used the famous three. js library which is a
    }
    ```
 
-5. Render the planets, tags, 
+   
+
+5. **Render the planets, tags and trajectory**
 
    To render the solar system, we need calculate the object's position 
 
@@ -218,15 +224,87 @@ After completing the above 5 steps, we can see the following effects
 
 
 
-##### Quiz Game
+***Background Music***
+
+In order to enhance the richness of the display, we have added a background music part. After entering the presentation module, the background music automatically starts to play.
+
+We added a music obj in PresentationComponent, and in its Constructor, we invoke load() and play() to make music play in the background.
+
+```javascript
+export class PresentationComponent {
+  bgm = new Audio('assets/bgm.mp3');
+  // ....
+  constructor() {
+    this.bgm.load();
+    this.bgm.play();
+    ...
+  }
+}
+```
+
+
+
+***Planet information display***
+
+Another important part of the presentation part is the text introduction of the planet. By clicking on the planet’s button, the planet information can be displayed on the page. When clicking on other places, the display text disappears.
+
+We set up 10 small pictures of planets in the html file, and bind the mouse click event in the ts file. Then create a picture element object in .ts file, If the click point is one of the planet buttons, set the src of the image element object to the text introduction picture of the planet, and display it on the screen.
+
+![buttons](./pictures/buttons.png)
+
+```html
+<img src="assets/buttons/Sun.png" alt="" style="display:block;width:48px;position:absolute;left:300px;top:25px;">
+<span style="display:block; position:absolute; top:75px; left:310px; color:white;">
+  Sun
+</span>
+<img  src="assets/buttons/Mercury.png" alt="" style="display:block;width:48px;position:absolute;left:400px;top:25px;">
+<span style="display:block; position:absolute; top:75px; left:400px; color:white;">
+  Mercury
+</span>
+```
+
+```typescript
+function choose(event) {
+      img.src = '';
+      var Sx = event.clientX;
+      var Sy = event.clientY;
+      if (Sy > 580 ){  // hard code to locate the planet button
+        if(Sx > 320 && Sx < 370){
+          img.src = 'assets/tags/Sun.png'
+        }
+        if(Sx > 420 && Sx < 470){
+          img.src = 'assets/tags/Mercury.png'
+        }
+        // ...
+ }
+ addEventListener('click', choose);
+```
+
+Results as shown below：
+
+
+
+
+
+##### Quiz Part
 
 The other part is  the quiz which give 10 questions to test the users knowledge about solar system and give a score after the quiz, then user can choose to play the quiz again or return presentation part.
+
+In the quiz part, 
+
+***Basic layout***
+
+
+
+<img src="/Users/jon/Group28/pictures/quizlayout.png" alt="quizlayout" style="zoom:50%;" />
 
 
 
 ##### End
 
 
+
+##### Router
 
 
 

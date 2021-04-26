@@ -337,7 +337,7 @@ export class PresentationComponent {
       // //屏幕坐标转标准设备坐标
       // var x = (Sx / window.innerWidth) * 2 - 1;
       // var y = -(Sy / window.innerHeight) * 2 + 1;
-      if (Sy > 680 ){
+      if (Sy > 580 ){
         if(Sx > 320 && Sx < 370){
           img.src = 'assets/tags/Sun.png'
         }

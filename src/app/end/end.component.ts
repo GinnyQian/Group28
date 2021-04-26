@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GameComponent} from '../game/game.component';
+import {DataService} from '../data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-end',
@@ -7,9 +9,10 @@ import { GameComponent} from '../game/game.component';
   styleUrls: ['./end.component.css']
 })
 export class EndComponent implements OnInit {
-  // tslint:disable-next-line:no-input-rename
-  // @Input('curScore') curScore: number | undefined;
-  constructor() { }
+  curScore = 0;
+  constructor( private dataService: DataService) {
+    this.curScore = dataService.getScore();
+  }
 
   ngOnInit(): void {
   }

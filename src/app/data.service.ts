@@ -10,7 +10,7 @@ import {GameComponent} from './game/game.component';
   providedIn: 'root'
 })
 export class DataService {
-
+  public curScore = 50;
   private REST_API_SERVER = 'http://localhost:3000/api/game';
   constructor(private httpClient: HttpClient) { }
 
@@ -18,4 +18,7 @@ export class DataService {
     return this.httpClient.get<Question[]>(this.REST_API_SERVER);
   }
 
+  public getScore(): number{
+    return this.curScore;
+  }
 }
