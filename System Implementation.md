@@ -214,7 +214,7 @@ In the presentation part, we mainly used the famous three. js library which is a
 
 After completing the above 5 steps, we can see the following effects
 
-![solarsystem](/Users/jon/Group28/pictures/solarsystem.gif)
+![solarsystem](./pictures/solarsystem.gif)
 
 
 
