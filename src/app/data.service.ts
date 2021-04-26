@@ -12,10 +12,10 @@ import {GameComponent} from './game/game.component';
 export class DataService {
 
   private REST_API_SERVER = 'http://localhost:3000/api/game';
-
   constructor(private httpClient: HttpClient) { }
 
   public getAll(): Observable<Question[]>{
     return this.httpClient.get<Question[]>(this.REST_API_SERVER);
   }
+
 }

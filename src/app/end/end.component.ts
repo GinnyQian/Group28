@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GameComponent} from '../game/game.component';
 
 @Component({
   selector: 'app-end',
@@ -6,10 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./end.component.css']
 })
 export class EndComponent implements OnInit {
-
-  // @Input() game: Game;
   // tslint:disable-next-line:no-input-rename
-  @Input('game') curScore: number | undefined;
+  // @Input('curScore') curScore: number | undefined;
   constructor() { }
 
   ngOnInit(): void {

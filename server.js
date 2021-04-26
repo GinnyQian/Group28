@@ -1,7 +1,3 @@
-// Get dependencies
-
-// mongodb info
-// mongodb+srv://penghezhang:<password>@groupproject.qhbrl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 const express = require('express');
 const path = require('path');

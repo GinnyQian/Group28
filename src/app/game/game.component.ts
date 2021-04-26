@@ -4,7 +4,6 @@ import { Question } from '../question';
 import {Data, Router} from '@angular/router';
 import { DataService} from '../data.service';
 
-
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',

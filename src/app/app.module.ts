@@ -8,30 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PresentationComponent } from './presentation/presentation.component';
 import { EndComponent } from './end/end.component';
-import { QuizComponent } from './quiz/quiz.component';
 import { GameComponent } from './game/game.component';
 
-
-import {QuizService} from './quiz.service';
 import {DataService} from './data.service';
 
-// define the routes
-const ROUTES = [
-  {
-    path: '',
-    redirectTo: 'quiz',
-    pathMath: 'full'
-  },
-  {
-    path: 'quiz',
-    component: QuizComponent
-  }
-];
 @NgModule({
   declarations: [
     AppComponent,
     PresentationComponent,
-    QuizComponent,
     GameComponent,
     EndComponent
   ],
@@ -42,7 +26,7 @@ const ROUTES = [
     ChartsModule,
     FormsModule,
   ],
-  providers: [QuizService, DataService],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

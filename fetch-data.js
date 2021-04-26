@@ -1,38 +1,44 @@
-const { MongoClient } = require("mongodb");
+// const { MongoClient } = require("mongodb");
+//
+// // Replace the uri string with your MongoDB deployment's connection string.
+//
+// const uri = "mongodb+srv://penghezhang:<root>@groupproject.qhbrl.mongodb.net/quizdata?retryWrites=true&w=majority";
+//
+// const client = new MongoClient(uri);
+//
+// async function run() {
+//   try {
+//     await client.connect();
+//
+//     const database = client.db("quizdata");
+//     const movies = database.collection("questions");
+//
+//     // query for movies that have a runtime less than 15 minutes
+//     const query = { runtime: { $lt: 15 } };
+//
+//     const cursor = movies.find();
+//
+//     // print a message if no documents were found
+//     if ((await cursor.count()) === 0) {
+//       console.log("No documents found!");
+//     }
+//
+//     // replace console.dir with your callback to access individual elements
+//     await cursor.forEach(console.dir);
+//   } finally {
+//     await client.close();
+//   }
+// }
+// run().catch(console.dir);
 
-const url = "mongodb+srv://penghezhang:<root>@groupproject.qhbrl.mongodb.net/quizdata?retryWrites=true&w=majority";
-const client = new MongoClient(url);
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://penghezhang:<root>@groupproject.qhbrl.mongodb.net/quizdata?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// The database to use
-const dbName = "quizdata";
+client.connect(err => {
+  const collection = client.db("sample_airbnb").collection("listingsAndReviews");
+  console.log(3);
+  console.log(collection.find({}));
+  // perform actions on the collection object
+});
 
-async function run() {
-  try {
-    await client.connect();
-    console.log("Connected correctly to server");
-    const db = client.db(dbName);
-    // Use the collection "people"
-    const col = db.collection("questions");
-    // Construct a document
-    // let personDocument = {
-    //   "name": { "first": "Alan", "last": "Turing" },
-    //   "birth": new Date(1912, 5, 23), // June 23, 1912
-    //   "death": new Date(1954, 5, 7),  // June 7, 1954
-    //   "contribs": [ "Turing machine", "Turing test", "Turingery" ],
-    //   "views": 1250000
-    // }
-    // // Insert a single document, wait for promise so we can read it back
-    // const p = await col.insertOne(personDocument);
-    // Find one document
-    const myDoc = await col.findOne();
-    // Print to the console
-    console.log(myDoc);
-  } catch (err) {
-    console.log(err.stack);
-  }
-
-  finally {
-    await client.close();
-  }
-}
-run().catch(console.dir);
