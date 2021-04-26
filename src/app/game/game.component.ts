@@ -34,14 +34,14 @@ export class GameComponent implements OnInit {
     this.dataService.getAll().subscribe(
        data => {
         this.questionsFromServer = data;
-        console.log(data[1].question);
+        // console.log(data[1].question);
         // now let's update the fields
       },
       error => {
         console.log(error);
       });
-    console.log(this.questions[2].question);
-    console.log('received');
+    // console.log(this.questions[2].question);
+    // console.log('received');
   }
 
   onSelect(choiceNumber: string): void {
@@ -70,7 +70,6 @@ export class GameComponent implements OnInit {
       this.curQuestion = this.questionsFromServer[this.questionIdx++];
       this.haveChoose = '0';
       this.selectedChoice = 'nul';
-    }else{
     }
   }
 
