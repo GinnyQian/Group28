@@ -8,7 +8,7 @@ Middle Tier : We use the minimal and flexible Express Node.js web application fr
 
 Front End : Our project focuses on the front-end part. The front-end is composed of three parts, the display part (showing the solar system in a 3D scene dynamically), the quiz part (providing 10 multiple-choice questions and scoring), and the end part (providing a return after the quiz is finished)
 
-<img src="./pictures/architecture.jpg" alt="architecture" style="zoom:67%;" />
+<img src="./pictures/architecture.jpg" alt="architecture" width="75%" height="75%" />
 
 
 
@@ -214,7 +214,7 @@ In the presentation part, we mainly used the famous three. js library which is a
 
 After completing the above 5 steps, we can see the following effects
 
-<img src="./pictures/solarsystem.gif" alt="solarsystem" style="zoom:150%;" />
+<img src="./pictures/solarsystem.gif" alt="solarsystem" width="150%" height="150%" />
 
 
 
