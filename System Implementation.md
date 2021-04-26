@@ -34,7 +34,7 @@ We have implemented the following functions：
 
 In the presentation part, we mainly used the famous three. js library which is a cross-browser JavaScript library and application programming interface (API) used to create and display animated 3D computer graphics in a web browser using WebGL. The implementation of this part can be divided into the following parts:
 
-1. Creating the scene
+1. Create the scene
 
    To actually be able to display anything with three.js, we need three things: scene, camera and renderer, so that we can render the scene with camera.
 
@@ -52,7 +52,7 @@ In the presentation part, we mainly used the famous three. js library which is a
    camera.lookAt(scene.position); // set camera direction
    ```
 
-   Then create the renderer and insert to dim as a element
+   Then create the renderer and insert to dom as an element.
 
    ```javascript
    var renderer = new THREE.WebGLRenderer({
@@ -63,11 +63,9 @@ In the presentation part, we mainly used the famous three. js library which is a
    document.body.appendChild(renderer.domElement); // insert to dom
    ```
 
-2. 星球数据设置
+2. Create planets object 
 
-3. Add planets object to scene星球导入到场景
-
-   In this part, we need to create planets and add them to scene, because wo have 10  planets to implement so we write a functin to simplify that:
+   In this part, we need to create mesh as planets and add them to scene, because wo have 10  planets to implement so we write a functin to simplify that:
 
    ```javascript
    function createSphereMesh(R, URL) { // planet radius and URL of its picture
@@ -85,15 +83,138 @@ In the presentation part, we mainly used the famous three. js library which is a
    
    ```
 
+   there are some planets have ring around them, so we need to add Ring to them
+
+   ```javascript
+   function createRingMesh(r, R, URL) { // 2 radius of ring, URL of ring picture
+     var geometry = new THREE.RingGeometry(r, R, 32);//create a ring geomerty
+     return createMesh(geometry, URL);
+   }
    
+   function createringPlanetMesh(sphere_R, sphere_URL, ring_r, ring_R, ring_URL) {
+     let group = new THREE.Group();  // use a group object to hold planet and its ring
+     let spere = createSphereMesh(sphere_R, sphere_URL);
+     let ring = createRingMesh(ring_r, ring_R, ring_URL);
+     ring.rotateX(Math.PI/2);//adjust the gesture of ring
+     group.add(spere, ring);
+     return group;  // return the planet object
+   }
+   ```
 
-4. 星球的自转和公转
+   also, we implemented the planets' revolution trajectory in the scene,
 
-5. 轨迹线显示
+   ```javascript
+   function circle(r) {
+     var arc = new THREE.ArcCurve(0, 0, r, 0, 2 * Math.PI, true); // origin, radius and start angle
+     var points = arc.getPoints(100); // points array (the larger, the )
+     var geometry = new THREE.BufferGeometry();
+     geometry.setFromPoints(points);
+     var material = new THREE.LineBasicMaterial({
+       color: 0x708090  // set the color
+     });
+     var line = new THREE.LineLoop(geometry, material); // create line object
+     line.rotateX(Math.PI / 2);
+     return line;
+   }
+   ```
 
+3. Mock the Planets data
+
+   In the code, the radius, texture path, revolution radius and other parameters of all planets are all set in function data(), we use a reference value K to make relative size and trajectory of the planet.
+
+   ```javascript
+   function data() {
+   // All parameters are not real data
+   // Set a reference value K, the radius and revolution radius of all stars are 		  multiples of the changed parameters
+     var K = 5;
+     return {
+       sun: {
+         name: 'Sun',
+         R: 10 * K, // 
+         URL: 'assets/planets/sun.jpg', 
+       },
+       planet: [{
+         name: 'Mercury',
+         R: 2.5 * K,
+         URL: 'assets/planets/Mercury.jpg',
+         revolutionR: 20 * K,
+       }, {
+             name: 'Uranus',
+             sphere: {
+               R: 3.5 * K, // ridus
+               URL: 'assets/planets/Uranus.jpg',
+             },
+             ring: {
+               r: 4 * K, // inside radius
+               R: 6 * K, // outside
+               URL: 'assets/planets/UranusRing.png',
+             },
+             revolutionR: 80 * K,
+           }, ......
+    }
+   ```
+
+4. Create planet's tag
+
+   In order to better identify the planet, we added  tags around the planets, display the name of the planet, and move with the planet, so we wrote createTag( ) and setTagPosition( ) to implement it.
+
+   ```javascript
+   // create the tag object
+   function createTag(str) { //str : the planet's name
+     var div = document.createElement('div');
+     document.body.appendChild(div);
+     div.style.position = 'absolute';
+     div.style.display = 'block';
+     div.innerText = str;
+     div.style.padding = '6px 10px';  // set some parameters to the tag div
+     div.style.color = '#fff';
+     div.style.fontSize = '14px';
+     div.style.backgroundColor = 'rgba(25,25,25,0.4)';
+     div.style.borderRadius = '5px'
+     return div;
+   }
    
+   // calcute the position of tags in canvas for render later
+   function setTagPositionY(obj) { // obj : planet object
+     var worldVector = new THREE.Vector3();
+     // get world position in three
+     obj.getWorldPosition(worldVector);
+     var standardVector = worldVector.project(camera); //世界坐标转标准设备坐标
+     var a = window.innerWidth / 2;
+     var b = window.innerHeight / 2;
+     var x = Math.round(standardVector.x * a + a); // translate to html position
+     var y = Math.round(-standardVector.y * b + b)  + 40; 
+     obj.tag.style.left = x  + 'px';
+     obj.tag.style.top = y  + 'px';
+   }
+   ```
 
+5. Render the planets, tags, 
 
+   To render the solar system, we need calculate the object's position 
+
+   ```javascript
+   function render() {
+     // rotation of sun
+     sun.rotation.y += 0.01;
+     setTagPositionY(sun);
+     renderer.render(scene, camera);
+     planetGroup.children.forEach(function(obj) {
+       obj.rotation.y += 0.01;// rotation of planet
+       // The larger the radius, the slower the rotation speed
+       obj.angle += 0.001 / obj.revolutionR * 400;
+       // Position setting during planet revolution
+       obj.position.set(obj.revolutionR * Math.sin(obj.angle), 0, obj.revolutionR * Math.cos(obj.angle));
+       setTagPositionY(obj);
+     })
+     requestAnimationFrame(render);
+   }
+   render();
+   ```
+
+After completing the above 5 steps, we can see the following effects
+
+![solarsystem](/Users/jon/Group28/pictures/solarsystem.gif)
 
 
 
