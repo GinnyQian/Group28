@@ -498,7 +498,25 @@ public getAll(): Observable<Question[]>{
 
 ### Back End
 
+For easier deployment, we used cloud-based MongoDB Atlas, and use questions collection in in the database quizdata to store question files.
 
+
+
+The loginc data model and instance are as follows: 
+
+
+
+![question](/Users/jon/Group28/pictures/question.png)
+
+```json
+{"_id":{"$oid":"6082e914f0a73b3921be7b89"},
+ "question":"Which planet is the hottest planet of the solar system? ",
+ "choice1":"Venus",
+ "choice2":"Earth",
+ "choice3":"Mars",
+ "choice4":"Moon",
+ "answer":"1"}
+```
 
 
 
@@ -506,7 +524,98 @@ public getAll(): Observable<Question[]>{
 
 
 
-### 
+#### Express 
+
+
+
+
+
+#### Node 
+
+
+
+```javascript
+const express = require('express');
+const path = require('path');
+const http = require('http');
+const bodyParser = require('body-parser');
+
+// Get our API routes
+const api = require('./server/routes/api');
+
+const app = express();
+
+// Parsers for POST data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+// Point static path to dist (folder where build files are located)
+app.use(express.static(path.join(__dirname, 'dist/myapp')));
+
+// Set our api routes
+app.use('/api', api);
+
+// Catch all other routes and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/myapp/index.html'));
+});
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port, () => console.log(`API running on localhost:${port}`));
+```
+
+
+
+#### **API**
+
+
+
+```javascript
+const express = require('express');
+const router = express.Router();
+const { MongoClient } = require("mongodb");
+
+const data = require('./data.json')
+const url = "mongodb+srv://penghezhang:root@groupproject.qhbrl.mongodb.net/test?retryWrites=true&w=majority&useNewUrlParser=true&useUnifiedTopology=true";
+const client = new MongoClient(url);
+
+const questions = getQuestions();
+
+router.get('/game',(req,res) => {
+  res.header("Content-Type",'application/json');
+  res.send(JSON.stringify(data));
+});
+
+async function getQuestions() {
+  try {
+    await client.connect();
+    console.log("Connected correctly to server");
+    const db = client.db("quizdata");
+    const col = db.collection("questions");
+    return await col.find({}).toArray();
+  } catch (err) {
+    console.log(err.stack);
+  }
+  finally {
+    await client.close();
+  }
+}
+
+module.exports = router;
+```
 
 
 
