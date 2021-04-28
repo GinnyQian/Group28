@@ -183,7 +183,7 @@ In the presentation part, we mainly used the famous three. js library which is a
      var worldVector = new THREE.Vector3();
      // get world position in three
      obj.getWorldPosition(worldVector);
-     var standardVector = worldVector.project(camera); //世界坐标转标准设备坐标
+     var standardVector = worldVector.project(camera); // get a vector to translate world position to html position
      var a = window.innerWidth / 2;
      var b = window.innerHeight / 2;
      var x = Math.round(standardVector.x * a + a); // translate to html position
@@ -288,29 +288,211 @@ Results as shown below：
 
 ##### Quiz Part
 
-The other part is  the quiz which give 10 questions to test the users knowledge about solar system and give a score after the quiz, then user can choose to play the quiz again or return presentation part.
+The other part is  the quiz which give 10 questions to test the users knowledge about solar system and give a score in the quiz, then navigate to end component.
 
-In the quiz part, 
+
 
 ***Basic layout***
 
-
-
-<img src="/Users/jon/Group28/pictures/quizlayout.png" alt="quizlayout" style="zoom:50%;" />
+Two parts are displayed at the top of the page, the current question index / total number of questions and the current score. Next is the question section, which first displays the question's description, followed by 4 options that use the same template.
 
 
 
-Flow chart in quiz part
+<img src="./pictures/quizlayout.png" alt="quizlayout" style="zoom:50%;" />
+
+
+
+We used the data-binding mechanism in angular framework,  we have bound attributes  ( questionIdx, curScore, curQuestion ), css style ( correct and incorrect ) and events ( onSelect( ), click ) in the HTML elements to monitor the choices made by the user and trigger the corresponding events (judge right or wrong, increase the score, load the next topic or lead to the end component).
+
+
+
+```html
+<h2 class="score">{{questionIdx+1}} / 10</h2>    
+<h2 class="score" >{{curScore}}</h2>
+<div class="question">{{curQuestion.question}}
+  <div class="choice-container" [class.correct]=" selectedChoice === '1' && curQuestion.answer === '1' " [class.incorrect]="selectedChoice == '1' && selectedChoice !== curQuestion.answer" >
+    <p class="choice-prefix">A</p>
+    <p class="choice-text" (click)="onSelect('1')"> {{curQuestion.choice1}}</p>
+  </div>
+  ....
+</div>
+```
+
+
+
+**The running process of componet**
+
+The following is a flowchart of the interaction between html file and typescript file in Quiz component.
+
+The first step is to get questions data, we write a service to get the questions array, but html will be displayed earlier than retrieveData(),  so we first used a mock questions whichcalled "loading", placed it on the page, pretending to be waiting for the data to arrive, after a short pause, call nextQuestion() to get the real problem. Then when user click the choice in page, the onSelect(int idx) will be called and send the user's choice to backend, the curScore may be added 10, after a short pause, the page will show next question. Most of the settimeout method is to give the HTML time to change the style and the content of question, so as to smooth the transition time of the page.
+
+
 
 <img src="./pictures/quiz.jpg" alt="quiz" style="zoom:50%;" />
 
 
 
+
+
+
+
+The following is the implementation process of the 3 methods
+
+
+```javascript
+retrieveData(): void {
+  this.dataService.getAll().subscribe(
+     data => {
+      this.questionsFromServer = data;
+    },
+    error => {
+      console.log(error);
+    });
+}
+```
+
+
+```javascript
+// we need router to go to end component and dataService to set curScore and get data from server
+constructor( private router: Router, private dataService: DataService ) {
+  this.retrieveData();
+  setTimeout(() => {
+    this.nextQuestion();
+  }, 800);
+}
+```
+
+
+```javascript
+nextQuestion(): void {
+  // if there still some questions
+  if (this.questionIdx === this.questionsFromServer?.length){
+    setTimeout(() => {  // no more: set the curScore in dataService (the end component will use that) and navigate to end component
+      this.dataService.curScore = this.curScore; 
+      this.router.navigate(['/end']).then(r => {});
+    }, 800);
+  }else if (this.questionsFromServer != null){
+    // set the curQuestion to the next question
+    this.curQuestion = this.questionsFromServer[this.questionIdx++];
+    this.haveChoose = '0';        // prepare for the next question
+    this.selectedChoice = 'nul';  // prepare for the next question
+  }
+}
+```
+
+
+```javascript
+// html will set the chiceNumber in the parameter
+onSelect(choiceNumber: string): void {
+  this.selectedChoice = choiceNumber;
+  if (this.selectedChoice !== this.curQuestion.answer){
+    // if the answer is wrong, do nothing
+  }else{
+    console.log('right answer');
+    this.curScore += 10;
+  }
+  setTimeout(() => {
+    this.nextQuestion();
+  }, 800);
+}
+```
+
+
+
+The simplified diagram of the internal call relationship is as follows：
+
+
+
+![simpleQuiz](/Users/jon/Group28/pictures/simpleQuiz.jpg)
+
+
+
+贴一个 gif 图 ，问题切换的
+
+
+
 ##### End
 
+This part has two functions. First, it displays congratulations and the score of quiz. Second, it provides two buttons to return to the other two parts.
+
+We bind the curScore attribute in the html, and bind the routerLink to  other part in the buttons, so user can click the button to the presentation componet or quiz part.
+
+```html
+<div class="container">
+  <div id="home" class="flex-center flex-column">
+    <h1 >Congrats! You got {{curScore}} points </h1>
+    <a class="btn" routerLink="/game">Play Again</a>
+    <a class="btn" routerLink="/presentation">Return Home</a>
+  </div>
+</div>
+```
 
 
-##### Router
+
+In order to pass the score from the quiz part to the end part, we declare curScore variable in the dataService and import it to both components, whem the game part is done, it will set the game component's curScore to dataServer.curScore, so end Componet can get the user's score by call dataService.getScore() and HTML will show.
+
+```javascript
+constructor( private dataService: DataService) {
+  this.curScore = dataService.getScore();
+}
+```
+
+
+
+<img src="./pictures/endpart.png" alt="endpart" style="zoom:67%;" />
+
+
+
+##### Other **part**
+
+**Hover effect**
+
+When the mouse is hovering over the choice, we added a hover feature, the entire div emits blue light and moves up a short distance.
+
+```css
+.choice-container:hover {
+  cursor: pointer;
+  box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+  transform: translateY(-0.1rem);
+  transition: transform 150ms;
+}
+```
+
+// hover gif
+
+
+
+**DataService**
+
+The dataService is used to get question object from server and act as an intermediary to pass score variables. 
+
+In the definition of the data object, for simplicity of implementation, we set all attributes to string and include the correct answer inside each qeustion object.
+
+```typescript
+export interface Question {
+  question: string;   // the descrption of quesion
+  choice1: string;    // four choice
+  choice2: string;
+  choice3: string;
+  choice4: string;
+  answer: string;    // the right answer value in ('1','2'.'3','4')
+}
+```
+
+geAll() method will use Httpclient to get json from specific address and we specify this Question[] to map json object to quesiont array.
+
+```javascript
+public curScore = 0;   // can be accessed from end and game component
+private REST_API_SERVER = 'http://localhost:3000/api/game';
+constructor(private httpClient: HttpClient) { }
+
+// get json and cast to Question[]
+public getAll(): Observable<Question[]>{
+  return this.httpClient.get<Question[]>(this.REST_API_SERVER);
+}
+```
+
+
 
 
 

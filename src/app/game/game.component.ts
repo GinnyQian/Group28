@@ -18,22 +18,14 @@ export class GameComponent implements OnInit {
   curQuestion: Question = QUESTIONS[0];
   curScore = 0;
   haveChoose = '0';
-  fistTime = 1;
   constructor( private router: Router, private dataService: DataService ) {
     this.retrieveData();
     setTimeout(() => {
-      // if (this.fistTime === 1){
-      //   location.reload();
-      //   this.fistTime++;
-      // }
       this.nextQuestion();
     }, 800);
   }
 
   ngOnInit(): void {
-    // this.reloadCurrentRoute();
-    // location.reload();
-    // this.router.navigate(['/game']).then(r => {});
   }
 
   retrieveData(): void {
@@ -41,14 +33,10 @@ export class GameComponent implements OnInit {
     this.dataService.getAll().subscribe(
        data => {
         this.questionsFromServer = data;
-        // console.log(data[1].question);
-        // now let's update the fields
       },
       error => {
         console.log(error);
       });
-    // console.log(this.questions[2].question);
-    // console.log('received');
   }
 
   onSelect(choiceNumber: string): void {
@@ -60,7 +48,6 @@ export class GameComponent implements OnInit {
     }else{
       console.log('right answer');
       this.curScore += 10;
-      // this.curQuestion.choice4 = 'wrong answer';
     }
     setTimeout(() => {
       this.nextQuestion();
