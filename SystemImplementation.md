@@ -403,7 +403,7 @@ The simplified diagram of the internal call relationship is as follows：
 
 
 
-![simpleQuiz](/Users/jon/Group28/pictures/simpleQuiz.jpg)
+![simpleQuiz](./pictures/simpleQuiz.jpg)
 
 
 
