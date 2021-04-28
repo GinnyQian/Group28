@@ -16,7 +16,6 @@ export class AppComponent {
   }
 
   redirectTo(where: string): void {
-    console.log('redir');
     this.router.navigate([where]);
   }
 

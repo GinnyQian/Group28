@@ -18,15 +18,22 @@ export class GameComponent implements OnInit {
   curQuestion: Question = QUESTIONS[0];
   curScore = 0;
   haveChoose = '0';
+  fistTime = 1;
   constructor( private router: Router, private dataService: DataService ) {
     this.retrieveData();
     setTimeout(() => {
+      // if (this.fistTime === 1){
+      //   location.reload();
+      //   this.fistTime++;
+      // }
       this.nextQuestion();
-      // this.curQuestion.question = 'asdfasdfasfadsf';
     }, 800);
   }
 
   ngOnInit(): void {
+    // this.reloadCurrentRoute();
+    // location.reload();
+    // this.router.navigate(['/game']).then(r => {});
   }
 
   retrieveData(): void {

@@ -300,6 +300,12 @@ In the quiz part,
 
 
 
+Flow chart in quiz part
+
+<img src="./pictures/quiz.jpg" alt="quiz" style="zoom:50%;" />
+
+
+
 ##### End
 
 

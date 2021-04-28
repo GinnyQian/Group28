@@ -366,22 +366,6 @@ export class PresentationComponent {
           img.src = 'assets/tags/Neptune.png'
         }
       }
-
-
-      // var raycaster = new THREE.Raycaster();
-      // raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
-      // // 环行星是group包含两个mesh子对象，intersectObjects方法第二个参数设置为true，可以检测子对象
-      // var intersects = raycaster.intersectObjects(intersectsArr, true);
-      // if (intersects.length > 0) {
-      //   // 环行星好像无法选中
-      //   console.log("射线投射器返回的对象", intersects);
-      //   console.log(intersects[0].object.name);
-      //   img.src = 'assets/tags/' + intersects[0].object.name + '.png';
-      //   console.log(img.src);
-      //   choosePlanet = intersects[0].object;
-      // }else{
-      //   console.log('没东西');
-      // }
     }
 
      addEventListener('click', choose); // 监听窗口鼠标单击事件
