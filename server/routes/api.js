@@ -3,12 +3,12 @@ const router = express.Router();
 const { MongoClient } = require("mongodb");
 
 // declare axios for making http requests
-const axios = require('axios');
-const API = 'https://jsonplaceholder.typicode.com';
+// const axios = require('axios');
+// const API = 'https://jsonplaceholder.typicode.com';
 const data = require('./data.json')
 const url = "mongodb+srv://penghezhang:root@groupproject.qhbrl.mongodb.net/test?retryWrites=true&w=majority&useNewUrlParser=true&useUnifiedTopology=true";
 const client = new MongoClient(url);
-const dbName = "quizdata";
+// const dbName = "quizdata";
 
 router.get('/', (req, res) => {
   console.log("api '/' works");
@@ -21,12 +21,6 @@ router.get('/test', (req, res) => {
   res.header("Content-Type",'application/json');
   res.send(JSON.stringify(data));
 });
-
-// router.get('/game',(req,res) => {
-//   res.header("Content-Type",'application/json');
-//   res.send(JSON.stringify(data));
-//   console.log("api '/game' works");
-// })
 
 router.get('/game',(req,res) => {
   res.header("Content-Type",'application/json');
