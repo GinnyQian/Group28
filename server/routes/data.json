@@ -1,5 +1,45 @@
 [
   {
+    "question": "Which planet is covered largely by water?",
+    "choice1": "Venus",
+    "choice2": "Earth",
+    "choice3": "Mars",
+    "choice4": "Moon",
+    "answer": "2"
+  },
+  {
+    "question": " What is the name of the highest peak on Mars? ",
+    "choice1": "Olympus",
+    "choice2": "Bristol",
+    "choice3": "Oxford",
+    "choice4": "Cannon",
+    "answer": "1"
+  },
+  {
+    "question": "Which planet is known for its spectacular icy rings",
+    "choice1": "Mars",
+    "choice2": "Earth",
+    "choice3": "Saturn",
+    "choice4": "Uranus",
+    "answer": "4"
+  },
+  {
+    "question": "Which planet is the furthest from the sun?",
+    "choice1": "Earth",
+    "choice2": "Neptune",
+    "choice3": "Saturn",
+    "choice4": "Uranus",
+    "answer": "2"
+  },
+  {
+    "question": "Which is the largest planet of our solar system?",
+    "choice1": "Jupiter",
+    "choice2": "Neptune",
+    "choice3": "Mars",
+    "choice4": "Venus",
+    "answer": "1"
+  },
+  {
     "question": "Which planet is the hottest planet of the solar system? ",
     "choice1": "Venus",
     "choice2": "Earth",
@@ -7,7 +47,6 @@
     "choice4": "Moon",
     "answer": "1"
   },
-
   {
     "question": "Which planet is known for the \"Great Red Spot\"? ",
     "choice1": "Neptune",
