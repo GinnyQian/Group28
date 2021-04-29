@@ -522,11 +522,11 @@ For easier deployment, we used cloud-based MongoDB Atlas, and use questions coll
 
 
 
-The loginc data model and instance are as follows: 
+The logic data model and instance are as follows: 
 
 
 
-<img src="/Users/jon/Group28/pictures/question.png" alt="question" style="zoom:67%;" />
+<img src="./pictures/question.png" alt="question" style="zoom:67%;" />
 
 ```json
 {"_id":{"$oid":"6082e914f0a73b3921be7b89"},
