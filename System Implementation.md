@@ -165,7 +165,7 @@ In the presentation part, we mainly used the famous three. js library which is a
    ```javascript
    // create the tag object
    function createTag(str) { //str : the planet's name
-     var div = document.createElement('div');
+     var div = document.createElement('tag');
      document.body.appendChild(div);
      div.style.position = 'absolute';
      div.style.display = 'block';
@@ -328,7 +328,7 @@ The first step is to get questions data, we write a service to get the questions
 
 
 
-<img src="./pictures/quiz.jpg" alt="quiz" style="zoom:50%;" />
+<img src="./pictures/quiz.jpg" alt="quiz" style="zoom:50%;" width="75%" height="75%" />
 
 
 
@@ -493,6 +493,20 @@ public getAll(): Observable<Question[]>{
 ```
 
 
+
+
+
+```javascript
+constructor( private router: Router, private dataService: DataService ) {
+  // tslint:disable-next-line:prefer-const one-variable-per-declaration
+  let element = document.getElementsByTagName('tag'), index;
+  for (index = element.length - 1; index >= 0; index--) {
+    // @ts-ignore
+    element[index].parentNode.removeChild(element[index]);
+  }
+  ...
+}
+```
 
 
 
