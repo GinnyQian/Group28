@@ -19,6 +19,12 @@ export class GameComponent implements OnInit {
   curScore = 0;
   haveChoose = '0';
   constructor( private router: Router, private dataService: DataService ) {
+    // tslint:disable-next-line:prefer-const one-variable-per-declaration
+    let element = document.getElementsByTagName('tag'), index;
+    for (index = element.length - 1; index >= 0; index--) {
+      // @ts-ignore
+      element[index].parentNode.removeChild(element[index]);
+    }
     this.retrieveData();
     setTimeout(() => {
       this.nextQuestion();

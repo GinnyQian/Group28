@@ -292,7 +292,7 @@ export class PresentationComponent {
 
     // 星体标签 创建
     function createTag(str) { //str表示星体名称
-      var div = document.createElement('div');
+      var div = document.createElement('tag');
       document.body.appendChild(div);
       div.style.position = 'absolute';
       div.style.display = 'block';
