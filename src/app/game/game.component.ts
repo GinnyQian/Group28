@@ -18,6 +18,7 @@ export class GameComponent implements OnInit {
   curQuestion: Question = QUESTIONS[0];
   curScore = 0;
   haveChoose = '0';
+  questionsNumber: number | undefined = 0;
   constructor( private router: Router, private dataService: DataService ) {
     // tslint:disable-next-line:prefer-const one-variable-per-declaration
     let element = document.getElementsByTagName('tag'), index;
@@ -27,6 +28,7 @@ export class GameComponent implements OnInit {
     }
     this.retrieveData();
     setTimeout(() => {
+      this.questionsNumber = this.questionsFromServer?.length;
       this.nextQuestion();
     }, 800);
   }
