@@ -671,4 +671,4 @@ As our functions are gradually increased, the above process will be repeated con
 
 
 
-<img src="/Users/jon/Group28/pictures/ci.jpg" alt="ci" style="zoom:100%;" />
+<img src="./pictures/ci.jpg" alt="ci" style="zoom:100%;" />
