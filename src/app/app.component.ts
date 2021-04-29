@@ -11,7 +11,7 @@ export class AppComponent {
   bgm = new Audio('assets/bgm.mp3');
   curScore = 90;
   constructor( private router: Router) {
-    // this.router.navigate(['/presentation']);
+    this.router.navigate(['/presentation']);
     this.playMusic();
   }
 

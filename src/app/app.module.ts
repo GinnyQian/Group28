@@ -12,6 +12,7 @@ import { GameComponent } from './game/game.component';
 
 import {DataService} from './data.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
