@@ -407,7 +407,9 @@ The simplified diagram of the internal call relationship is as follows：
 
 
 
-贴一个 gif 图 ，问题切换的
+The final effect is as follows :
+
+<img src="./pictures/quizgif.gif" alt="quizgif" style="zoom:67%;" />
 
 
 
@@ -458,9 +460,9 @@ When the mouse is hovering over the choice, we added a hover feature, the entire
 }
 ```
 
-// hover gif
 
 
+![hovereffect](./pictures/hovereffect.gif)
 
 **DataService**
 
