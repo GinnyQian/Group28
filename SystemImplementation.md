@@ -498,6 +498,10 @@ public getAll(): Observable<Question[]>{
 
 
 
+**HTML element residue**
+
+When switching from presentation part to game part, the name tags created in presentation component still moving with the planet and will not disappear on the page. Therefore, when the quiz component is created, all elements whose tagname is 'tag' are first obtained, and then all of them are removed.
+
 ```javascript
 constructor( private router: Router, private dataService: DataService ) {
   // tslint:disable-next-line:prefer-const one-variable-per-declaration
