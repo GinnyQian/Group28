@@ -100,11 +100,11 @@ As a learner, he wants to take a test of knowledge of the solar system in order 
 
 After getting clear about users’ wants, needs, and expectations, we move to the design phase. At this stage, we mainly complete early prototyping and ideation which includs mood boards and paper prototyping.
 
-![](/Users/ginnyqian/Desktop/截屏2021-04-30 21.18.54.png)
+![](pictures/Moodboard.png)
 
-![](/Users/ginnyqian/Downloads/WechatIMG37.jpeg)
+![](pictures/paper1.jpeg)
 
-![](/Users/ginnyqian/Downloads/WechatIMG38.jpeg)
+![](pictures/paper2.jpeg)
 
 ##  Achievement
 
