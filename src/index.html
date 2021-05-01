@@ -10,5 +10,14 @@
 </head>
 <body>
   <app-root></app-root>
+  <script>
+  window.onUsersnapCXLoad = function(api) {
+    api.init();
+  }
+  var script = document.createElement('script');
+  script.async = 1;
+  script.src = 'https://widget.usersnap.com/load/0566da2e-f590-482f-aef5-127a5e0a2e30?onload=onUsersnapCXLoad';
+  document.getElementsByTagName('head')[0].appendChild(script);
+</script>
 </body>
 </html>
