@@ -1,4 +1,7 @@
-[TOC]
+- [**Working method**](#working-method)
+- [**Sprint timeline**](#sprint-timeline)
+- [**Team's Workflow**](--team-s-workflow---)
+
 
 
 # **Working method**
@@ -349,7 +352,7 @@ We reviewed our web together and We were clear that there are no obvious bugs. I
 
 
 
-# **Team's Workflow:**
+# **Team's Workflow**
 
 **GitHub:**
 
