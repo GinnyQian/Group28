@@ -1,4 +1,5 @@
 - [**Working method**](#working-method)
+- [**Communication method**](#communication-method)
 - [**Sprint timeline**](#sprint-timeline)
 - [**Team's Workflow**](--team-s-workflow---)
 
@@ -106,7 +107,7 @@ In Zoho, we focus on product backlog, sprint backlog and burn down chart, which 
 
 
 
-## **Communication method**
+# **Communication method**
 
 In light of this special period, one of our team member cannot arrive at Bristol in this term. So in order to ensure the smooth progress of the project and improve the efficiency of communication, we decided to combine the online communication method and face-to-face meeting. Given our team members are all from China, we chose to use WeChat, a famous social media in China, as our main daily-communication platform during the developing period. Besides, we chose to host weekly group meetings via the Microsoft Teams as we could record and playback meetings easily.
 
