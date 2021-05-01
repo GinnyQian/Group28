@@ -26,6 +26,8 @@ Yi Yuan - of20438@bristol.ac.uk
 
 # [UX Design](./doc/UXdesign.md)
 
+# [Sprints & Project Management](./doc/Workingmethod.md)
+
 # [Evaluation](./doc/Evaluation.md)
 
 
