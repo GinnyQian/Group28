@@ -1,3 +1,21 @@
+- [**Working method**](#--working-method--)
+  * [**Waterfall model**](#--waterfall-model---)
+  * [**Agile model**](#--agile-model--)
+  * [**Agile model vs Waterfall model in our project**](#--agile-model-vs-waterfall-model-in-our-project--)
+  * [**Communication method**](#--communication-method--)
+    + [**Team Organisztion & Individual contributions**](#--team-organisztion---individual-contributions--)
+    + [**Scrum Framework**](#--scrum-framework--)
+    + [**Individual contributions**](#--individual-contributions--)
+
+- [**Documentation of Sprints**](#--documentation-of-sprints--)
+  * [**Sprint timeline**](#--sprint-timeline--)
+    + [**Sprint 1: project preparation phase**](#--sprint-1--project-preparation-phase--)
+    + [**Sprint 2: project implementation phase**](#--sprint-2--project-implementation-phase--)
+    + [**Sprint 3: project test phase**](#--sprint-3--project-test-phase--)
+  
+- [**Team's Workflow**](#--team-s-workflow---)
+
+  
 
 
 # **Working method**
