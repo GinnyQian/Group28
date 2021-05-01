@@ -40,6 +40,6 @@ After getting clear about users’ wants, needs, and expectations, we move to th
 
 ![img](./pictures/Moodboard.png?lastModify=1619853014)
 
-![img](./Group28/pictures/paper1.jpeg?lastModify=1619853014)
+![img](./pictures/paper1.jpeg?lastModify=1619853014)
 
-![img](file:///Users/jon/Group28/pictures/paper2.jpeg?lastModify=1619853014)
+![img](./pictures/paper2.jpeg?lastModify=1619853014)
