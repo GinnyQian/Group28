@@ -18,9 +18,9 @@ Yi Yuan - of20438@bristol.ac.uk
 
 
 
-# [Introduction](./doc/introduction.md)
+# [Introduction](./doc/Introduction.md)
 
-# [Background](./doc/background.md)
+# [Background](./doc/Background.md)
 # [System Implementation](./doc/SystemImplementation.md)
 
 # [UX Design](./doc/UXdesign.md)
