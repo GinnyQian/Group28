@@ -1,6 +1,6 @@
 # UX Design
 
-The UX design of our project is divided into the following four key phases: product definition, research, analysis, design.
+The UX design of our project is divided into the following four key phases: product definition, research, analysis, and design.
 
 ## Product definition
 
@@ -38,8 +38,20 @@ As a learner, he wants to take a test of knowledge of the solar system in order 
 
 After getting clear about users’ wants, needs, and expectations, we move to the design phase. At this stage, we mainly complete early prototyping and ideation which includs mood boards and paper prototyping.
 
+Mood boards contain the elements that will be put together to form the final version of the project, providing inspiration and direction. The mood board below shows that the colors of our page are varied, due to the different colors of the planets in our solar system, which is in sharp contrast to the black background. In addition, our theme was inspired by The Hitchhiker's Guide to The Galaxy, a science fiction novel, so we also put up movie posters.
+
 ![img](./pictures/Moodboard.png?lastModify=1619853014)
+
+The two images below are paper prototypes of the site. The first image is the home page of the website, which is divided into four parts from top to bottom: the title, the table of contents, the solar system simulation diagram and the logo of each planet.
+
+When the user clicks "Presentation", the page goes to the home page (the default). When the user moves the cursor over a planet, a bubble box containing information about that planet is displayed.
+
+When the user clicks "Test," the page jumps to the TEST page (shown in the second image). Our design is that when you jump to the page, the first question will be displayed automatically, and the timer in the upper right corner will start the timer. The answer page consists of two parts, the left side shows the questions, and the right four rectangles are the answers.
 
 ![img](./pictures/paper1.jpeg?lastModify=1619853014)
 
 ![img](./pictures/paper2.jpeg?lastModify=1619853014)
+
+## Validation
+
+
