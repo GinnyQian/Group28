@@ -52,6 +52,5 @@ When the user clicks "Test," the page jumps to the TEST page (shown in the secon
 
 ![img](./pictures/paper2.jpeg?lastModify=1619853014)
 
-## Validation
 
 
