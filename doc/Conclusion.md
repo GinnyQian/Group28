@@ -78,3 +78,5 @@ For the design research phase, we were originally designed to be able to communi
 The same problem also occurs in the questionnaire phase. Although the number of online questionnaires will be more, we could hardly control the target surveyors for obtaining our data of questionnaires. It will be more direct and efficient by collecting questionnaire offline.
 
 In terms of positive effection, we have agreed on a working model. After assigning tasks, we will complete our own parts, update our progress every day, and hold at least one plenary meeting every week. This allows us to focus more on our own part and helps us to complete our work efficiently.
+
+# **Future work**
