@@ -33,14 +33,3 @@ Yi Yuan - of20438@bristol.ac.uk
 # [Conclusion](./doc/Conclusion.md)
 
 
-
-##  Achievement
-
-#### Web application
-
-##### some prototype propictures
-
-![mainPage](./doc/pictures/mainPage.png)
-
-![mainPage](./doc/pictures/Mars.png)
-
