@@ -1,6 +1,6 @@
 
 
-## **Reflection on working practices**
+# **Reflection on working practices**
 
 As the flow chart shown below, we subdivided the whole working practices into five different task groups, and we will discuss them respectively.
 
@@ -8,7 +8,7 @@ As the flow chart shown below, we subdivided the whole working practices into fi
 
 
 
-### **Our working practices**
+## **Our working practices**
 
 In the part of Sprints, we use the software - Zoho for Agile project management. Penghe is token as the scrum leader to promote project progress while Zhenni focuses on collecting and analyzing user data because of her excellent PR ability. Given Bingli is good at arrange program, she is mainly responsible for managing and maintaining Zoho accounts. And Jing and Yi are interested in technical development, so they are the in the team.
 
@@ -22,7 +22,7 @@ As for group development, we use Zoho and Github to arrange all the materials we
 
 
 
-**Evaluation of working practice**
+## **Evaluation of working practice**
 
 We have the prefect project division as each member could play to their best advantage. During the project development cycle, we have a close cooperation, so our project can run smoothly. However, the schedule at the beginning of the project is not reasonable, for example, our questionnaire is not timely so that we spent loads of time to modify the content of project. But luckily, we found out it in time and made changes to avoid lacking time in the later period.
 
