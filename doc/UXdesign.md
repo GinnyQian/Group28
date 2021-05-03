@@ -66,6 +66,6 @@ In the flowchart, we simply show the connection between the two parts of the web
 
 Through the design, we draw the website effect based on the above information.
 
-![mainPage](./doc/pictures/mainPage.png)
+![mainPage](./doc/pictures/mainPage.png?lastModify=1619853014)
 
-![mainPage](./doc/pictures/Mars.png)
+![mainPage](./doc/pictures/Mars.png?lastModify=1619853014)
