@@ -60,5 +60,7 @@ According to the paper prototype, we have also preliminarily drawn the product p
 
 ![img](./pictures/finalpage.png?lastModify=1619853014)
 
+In the flowchart, we simply show the connection between the two parts of the website display and test. Users can select the display or test page through the catalog. Questions will be randomly generated on the test page, and scores will be displayed after completing ten questions about the solar system.
+
 ![img](./pictures/flow.jpg?lastModify=1619853014)
 
