@@ -80,3 +80,5 @@ The same problem also occurs in the questionnaire phase. Although the number of 
 In terms of positive effection, we have agreed on a working model. After assigning tasks, we will complete our own parts, update our progress every day, and hold at least one plenary meeting every week. This allows us to focus more on our own part and helps us to complete our work efficiently.
 
 # **Future work**
+
+Regarding the future work of design, the functionality of the web page needs to be expanded. At this stage, we can only achieve two functions: planetary information display and testing. In the future improvement, we can increase the social section to improve the interactivity of the website. For example, users can post a bubble with their own opinions in the planetary simulation map, and they can also comment on the opinions of others. For the answer section, in order to increase the fun, we can set up a theme answering contest every week. In addition, setting up a leaderboard is also a good choice, users can try multiple times to get high scores and good rankings.
