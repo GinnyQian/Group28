@@ -42,5 +42,5 @@ Yi Yuan - of20438@bristol.ac.uk
 
 ![mainPage](./doc/pictures/mainPage.png)
 
-![mainPage](./docpictures/Mars.png)
+![mainPage](./doc/pictures/Mars.png)
 
