@@ -60,3 +60,5 @@ According to the paper prototype, we have also preliminarily drawn the product p
 
 ![img](./pictures/finalpage.png?lastModify=1619853014)
 
+![img](./pictures/flow.jpg?lastModify=1619853014)
+
