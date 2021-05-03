@@ -52,7 +52,7 @@ When the user clicks "Test," the page jumps to the TEST page (shown in the secon
 
 ![img](./pictures/paper2.jpeg?lastModify=1619853014)
 
-According to the paper prototype, we have also preliminarily drawn the product prototype, that is, the concept map of our product on the web side.
+According to the paper prototype, we have also preliminarily drawn the product prototype, that is, the concept map of our product on the web side. The link is ![](./doc/Solarsystem.rp)
 
 ![img](./pictures/homepage.png?lastModify=1619853014)
 
