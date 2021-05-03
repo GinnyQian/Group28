@@ -1,12 +1,14 @@
 
 
-**Reflection on working practices**
+## **Reflection on working practices**
 
 As the flow chart shown below, we subdivided the whole working practices into five different task groups, and we will discuss them respectively.
 
 ![](Aspose.Words.531f5ca3-5617-4558-bb77-a875a407d992.001.png)
 
-**Our working practices**
+
+
+### **Our working practices**
 
 In the part of Sprints, we use the software - Zoho for Agile project management. Penghe is token as the scrum leader to promote project progress while Zhenni focuses on collecting and analyzing user data because of her excellent PR ability. Given Bingli is good at arrange program, she is mainly responsible for managing and maintaining Zoho accounts. And Jing and Yi are interested in technical development, so they are the in the team.
 
@@ -17,6 +19,8 @@ In the daily standup meeting, we host this part in WeChat group at 12.00pm every
 With regard to issue management, what we mentioned before, we discuss and ask a question in the daily standup meeting, and our project leader would determine whether we need a new meeting to solve it and how to solve it.
 
 As for group development, we use Zoho and Github to arrange all the materials we need. Our development goal is to meet customer needs, so our development direction is based on user feedback. Besides, we subdivided our goal into 2 parts, now and future, to support us do better.
+
+
 
 **Evaluation of working practice**
 
@@ -30,3 +34,34 @@ Then, in the part of issue management, we would feedback problem to our leader f
 
 Finally, when it comes to the Group development, we are happy that our group has a clear division, so every member will not too free or too busy. Besides, through daily meeting, we also can discuss our situation and get help from others. More importantly, even if the coursework is finished, we find a big interested in this project and we will continue to develop it in the future. During the whole development period, we could recognize we need spend more time and labor in technical support and technical development.  
 
+
+
+# Social and Ethical implications 
+
+Our project can be used for astronomy education for young students in society, providing them with a dynamic, interactive, and consolidating way to understand the knowledge of the solar system.
+
+However, in our solar system simulation, the speed, size, and position of the planets are not very rigorous; it may mislead people who lack of common sense and trust the website. If these people spread the wrong knowledge, It will have a bad influence on the astronomy education of the whole society.
+
+Secondly, the harm of electronic equipment to young people cannot be ignored. If young people are addicted to our website, they will have problems such as health hazards, decreased ability to communicate with others, and minor mental illnesses. Therefore, this type of education may not be suitable for mainstream use in  astronomy educational.
+
+For the education of hearing impaired and visually impaired children, our website does not make any adaptation. Unfortunately, our project is completely useless for them.
+
+
+
+## Future work on system implementation
+
+In terms of system implementation, there are many things that can be done in the future,
+
+In terms of quiz, 
+
+-  We only have 10 question banks that are not enough to meet the needs, and need to be expanded, and answer analysis can also be added; 
+- For better review, we can add a user-specific answer record module to record all wrong answers; 
+- In order to allow users to keep learning, we can add a punch-in module to record the number of days of continuous questioning and increase user stickiness;
+
+In the display of the solar system, 
+
+- We can add more background music with cosmic characteristics for users to switch and increase the freshness; 
+- We need to be more precise about the size, relative position, and speed of the planet, as close to science as possible, and write "This is an unrigorous model" on the page;
+- The current introduction of the planet is still too simple, we can add the next page function or display more detailed information;
+-  In the education of visually impaired children, we can add the voice broadcast function to read the current mouse in real time The content under the location, and the operations that can be performed.
+- In the layout of the planet picture at the bottom of the page, the hard code needs to be transformed into an automatically adapted layout.
