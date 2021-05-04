@@ -22,8 +22,6 @@ export class PresentationComponent {
     /**
      * 创建场景对象
      */
-    this.bgm.load();
-    this.bgm.play();
     var scene = new THREE.Scene();
     var texLoader = new THREE.TextureLoader();
 

@@ -62,3 +62,8 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.stop-button {
+  color: #56a5eb;
+  float: right;
+}
