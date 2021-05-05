@@ -48,9 +48,9 @@ Since our project does not require a user to register an account, the backend co
 Finally, we are very proud to be able to complete the goal of allowing children to understand and meet the concept interpretation of the solar system with simple and clear language and three-dimensional display, listening to the educational needs of the target user group and cooperating with the team to overcome difficulties, so that we feel ourselves The work is valuable.
 
 ## Future work on evaluation
-As the content of the project increases, we should consider using professional testing software instead of manual testing to test web pages.
+- As the content of the project increases, we should consider using professional testing software instead of manual testing to test web pages.
 
-Develop more detailed test plans and rating standards for user acceptance testing, such as questionnaires to evaluate stars.
+- Develop more detailed test plans and rating standards for user acceptance testing, such as questionnaires to evaluate stars.
 
 
 
