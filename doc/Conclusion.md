@@ -36,6 +36,18 @@ Finally, when it comes to the Group development, we are happy that our group has
 
 
 
+# Reflective discussion of the success of the project
+Overall, our team was quite successful in delivering the working prototypes in the initial conceptual design. We are full of confidence in the results of our work over the past few months.
+
+At the beginning of the conception process, the interactive interface we designed was simple and elegant, with clear navigation. It is clearly divided into two display and game modules, so that the development of the two parts can be carried out relatively independently and simultaneously. Thanks to the down-to-earth investigation and design in the initial stage, we did not experience major functional changes and wasted time in the later development process. In the end, we fully realized the expected functions of the two parts in UX design.
+
+The front end is the top priority of our web pages. The display part, showing the solar system in a 3D scene dynamically, is the achievement we are most proud of. We used the Three.js library to implement this part. As a native web3D engine, Three.js has the advantage of plug-in web3D engine: it does not need to install plug-ins and is well supported on the mobile side. In addition, compared with other web3D engines, it also has the characteristics of rich cases, flexible design, and convenient expansion. Three.js perfectly satisfies our design requirements for the built-in conversion perspective, changing the size, and clicking the pop-up text introduction floating window on the web page. However, its huge library is more than enough for the functions we want to achieve, and the learning cost is high.
+
+Since our project does not require a user to register an account, the backend content of the project is less. We do not need to interact with the database too much, and for easier deployment, we use the MongoDB Atlas as the database. This is a very suitable choice for our system implementation. Of course, the performance of MongoDB is quite flexible, and we want to add a new registration module in the future, and it can also be competent.
+
+Finally, we are very proud to be able to complete the goal of allowing children to understand and meet the concept interpretation of the solar system with simple and clear language and three-dimensional display, listening to the educational needs of the target user group and cooperating with the team to overcome difficulties, so that we feel ourselves The work is valuable.
+
+
 # Social and Ethical implications 
 
 Our project can be used for astronomy education for young students in society, providing them with a dynamic, interactive, and consolidating way to understand the knowledge of the solar system.
