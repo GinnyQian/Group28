@@ -127,10 +127,8 @@ The planetary button is not displayed in the expected position on some users' co
 
 Some users think that we can add more contents about planetary knowledge and enrich the question bank.
 
+Part of the feedback we got:
 ![](Aspose.Words.8b962308-2681-4c0b-9607-c46fc9d48f0a.005.png)
 
-
-
-### Part of the feedback we got
 
 Although the development cycle is coming to an end and time is tight, we will put the functions required by users in the focus of future work.
