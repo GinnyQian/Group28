@@ -1,3 +1,11 @@
+
+  * [Stack architecture and system design](#stack-architecture-and-system-design)
+  * [Front End](#front-end---angular-details-of-implementation)
+  * [Back End](#back-end)
+  * [Middle Tier](#middle-tier)
+  * [Deployment details](#deployment-details)
+
+
 ## System Implementation
 
 ### Stack architecture and system design
@@ -284,6 +292,10 @@ Results as shown below：
 
 
 
+<img src="./pictures/infoshow.gif" alt="infoshow" style="zoom:150%;" />
+
+
+
 
 
 ##### Quiz Part
@@ -496,8 +508,6 @@ public getAll(): Observable<Question[]>{
 
 
 
-
-
 **HTML element residue**
 
 When switching from presentation part to game part, the name tags created in presentation component still moving with the planet and will not disappear on the page. Therefore, when the quiz component is created, all elements whose tagname is 'tag' are first obtained, and then all of them are removed.
@@ -513,6 +523,38 @@ constructor( private router: Router, private dataService: DataService ) {
   ...
 }
 ```
+
+
+
+**Mute and unmute**
+
+We also applied a button to control the start and stop of the music, we bind the innnertext of the button, when clicked, it will judge whether it is mute or unmute, and make different responses.
+
+```html
+<li class="nav-item">
+  <button class = "stop-button" (click)="stopMusic()">{{desc}}</button>
+</li>
+```
+
+```typescript
+desc = 'mute';
+playMusic(): void{
+  this.bgm.load();
+  this.bgm.play();
+}
+stopMusic(): void{
+  if (this.desc === 'mute'){
+    this.bgm.pause();
+    this.bgm.currentTime = 0;
+    this.desc = 'unmute';
+  }else{
+    this.playMusic();
+    this.desc = 'mute';
+  }
+}
+```
+
+
 
 
 
@@ -542,13 +584,7 @@ The logic data model and instance are as follows:
 
 ### Middle Tier
 
-
-
-#### Express 
-
-
-
-#### Node 
+Our middle layer combines node as web server and express as app framework, the server.js is as follows:
 
 ```javascript
 const express = require('express');
