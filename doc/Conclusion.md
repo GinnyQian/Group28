@@ -1,4 +1,8 @@
-
+- [**Reflection on working practices**](#--reflection-on-working-practices--)
+- [Reflective discussion of the success of the project](#reflective-discussion-of-the-success-of-the-project)
+- [**Reflection on effection of COVID**](#--reflection-on-effection-of-covid--)
+- [Social and Ethical implications](#social-and-ethical-implications)
+- [Futere works](#futere-works)
 
 # **Reflection on working practices**
 
@@ -47,10 +51,21 @@ Since our project does not require a user to register an account, the backend co
 
 Finally, we are very proud to be able to complete the goal of allowing children to understand and meet the concept interpretation of the solar system with simple and clear language and three-dimensional display, listening to the educational needs of the target user group and cooperating with the team to overcome difficulties, so that we feel ourselves The work is valuable.
 
-## Future work on evaluation
-- As the content of the project increases, we should consider using professional testing software instead of manual testing to test web pages.
 
-- Develop more detailed test plans and rating standards for user acceptance testing, such as questionnaires to evaluate stars.
+
+# **Reflection on effection of COVID**
+
+First of all, we do have to admit that the coronavirus had a significant impact on the development of our project, and that the negative impact outweighs the positive impact.
+
+Due to the social distance regulation early this semester, the discussion room in campus was not available and therefore we did not have the opportunity to discuss offline. In addition, one of our team members is still in her own country for remote learning. In this case, we only have weekly online discussions via Teams.
+
+For the design research phase, we were originally designed to be able to communicate with interviewees face to face. However, at the same time, due to regulations, it is difficult for us to conduct offline interviews, and we could only communicate through online social application. Obviously, there are some drawbacks in online communication. For example, it is hard for us to make student interviewers focus on our questions, which leads to a short time of effective interview.
+
+The same problem also occurs in the questionnaire phase. Although the number of online questionnaires will be more, we could hardly control the target surveyors for obtaining our data of questionnaires. It will be more direct and efficient by collecting questionnaire offline.
+
+In terms of positive effection, we have agreed on a working model. After assigning tasks, we will complete our own parts, update our progress every day, and hold at least one plenary meeting every week. This allows us to focus more on our own part and helps us to complete our work efficiently.
+
+
 
 
 
@@ -66,7 +81,7 @@ For the education of hearing impaired and visually impaired children, our websit
 
 
 
-## Future work on system implementation
+# Futere works
 
 In terms of system implementation, there are many things that can be done in the future,
 
@@ -85,18 +100,12 @@ In the display of the solar system,
 - In the layout of the planet picture at the bottom of the page, the hard code needs to be transformed into an automatically adapted layout.
 
 
-# **Reflection on effection of COVID**
-
-First of all, we do have to admit that the coronavirus had a significant impact on the development of our project, and that the negative impact outweighs the positive impact.
-
-Due to the social distance regulation early this semester, the discussion room in campus was not available and therefore we did not have the opportunity to discuss offline. In addition, one of our team members is still in her own country for remote learning. In this case, we only have weekly online discussions via Teams.
-
-For the design research phase, we were originally designed to be able to communicate with interviewees face to face. However, at the same time, due to regulations, it is difficult for us to conduct offline interviews, and we could only communicate through online social application. Obviously, there are some drawbacks in online communication. For example, it is hard for us to make student interviewers focus on our questions, which leads to a short time of effective interview.
-
-The same problem also occurs in the questionnaire phase. Although the number of online questionnaires will be more, we could hardly control the target surveyors for obtaining our data of questionnaires. It will be more direct and efficient by collecting questionnaire offline.
-
-In terms of positive effection, we have agreed on a working model. After assigning tasks, we will complete our own parts, update our progress every day, and hold at least one plenary meeting every week. This allows us to focus more on our own part and helps us to complete our work efficiently.
-
-# **Future work**
 
 Regarding the future work of design, the functionality of the web page needs to be expanded. At this stage, we can only achieve two functions: planetary information display and testing. In the future improvement, we can increase the social section to improve the interactivity of the website. For example, users can post a bubble with their own opinions in the planetary simulation map, and they can also comment on the opinions of others. For the answer section, in order to increase the fun, we can set up a theme answering contest every week. In addition, setting up a leaderboard is also a good choice, users can try multiple times to get high scores and good rankings.
+
+On the evaluation part,
+
+- As the content of the project increases, we should consider using professional testing software instead of manual testing to test web pages.
+
+- Develop more detailed test plans and rating standards for user acceptance testing, such as questionnaires to evaluate stars.
+
